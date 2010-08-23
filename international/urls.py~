@@ -1,0 +1,15 @@
+from django.conf.urls.defaults import patterns, url
+
+urlpatterns = patterns('soccer.international.views', 
+                       url(r'^$',
+                           'index',
+                           name='index'),
+
+                       url(r'^(?P<id>\d+)/$',
+                           'team_by_id',
+                           name='team_by_id'),
+
+                       url(r'^(?P<slug>\w+)/$',
+                           'team_by_slug',
+                           name='team_by_slug'),
+)

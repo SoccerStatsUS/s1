@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{{ confederation.full_name }}
+
+<ul>
+  {% for league in leagues %}
+  <li><a href="{% url league_profile league %}">{{ league.name }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<ul>
+  {% for confederation in confederations %}
+  <li><a href="{% url confederation_by_id confederation.id %}">{{ confederation.short_name }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>{{ league.name }}</h3>
+
+<ul>
+  {% for team in teams %}
+  <li><a href="{% url team_by_slug team.slug %}">{{ team.short_name }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

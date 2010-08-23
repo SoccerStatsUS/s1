@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+{% for team in teams %}
+<tr>
+  <td>{{ team.full_name }}</td>
+  <td>{{ team.league }}</td>
+  <td>{{ team.city }}</td>
+  <td>{{ team.founded }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

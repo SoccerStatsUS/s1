@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+{% for salary in highest %}
+<tr>
+  <td>{{ salary.first_name }} {{ salary.last_name}}</td>
+  <td>{{ salary.team }}</td>
+  <td>{{ salary.base }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<table>
+{% for salary in lowest %}
+<tr>
+  <td>{{ salary.first_name }} {{ salary.last_name}}</td>
+  <td>{{ salary.team }}</td>
+  <td>{{ salary.base }}</td>
+  <td>{{ salary.guaranteed }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

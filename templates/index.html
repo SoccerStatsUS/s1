@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Welcome to SoccerOutsider.com</h3>
+
+<p>I'm working to bring you a statistically driven soccer website.  The focus is currently on Major League Soccer and American minor leagues, but we hope to expand to other regions, with a particular focus on Western Hemisphere soccer.</p>
+
+<p>We're just starting out, so here's what we've got so far:</p>
+
+<ul>
+  <li><a href="{% url international_index %}">Confederations information</a></li>
+  <li><a href="{% url salaries_index %}">Salary information for MLS</a></li>
+  <li><a href="{% url teams_index %}">Various teams information</a></li>  
+</ul>
+
+<p>If you have any questions or requests, you can contact me at <a href="mailto:contact@socceroutsider.com">here</a>.</p>
+
+{% endblock %}

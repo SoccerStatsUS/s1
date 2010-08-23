@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+{% for team, payroll in team_numbers %}
+<tr>
+  <td><a href="{% url salaries_by_team_this_year team %}">{{ team }}</a></td>
+  <td>{{ payroll }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

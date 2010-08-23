@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript">
+  $(document).ready(function() { $(".tablesorter").tablesorter();})
+</script>
+{% endblock %}
+
+{% block content %}
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Base</th>
+      <th>Guaranteed</th>
+    <tr>
+  </thead>
+<tbody>
+{% for salary in highest %}
+<tr>
+  <td>{{ salary.first_name }} {{ salary.last_name}}</td>
+  <td>{{ salary.team }}</td>
+  <td>{{ salary.base }}</td>
+  <td>{{ salary.guaranteed }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<table>
+{% for team, payroll in team_numbers %}
+<tr>
+  <td><a href="{% url salaries_by_team_this_year team %}">{{ team }}</a></td>
+  <td>{{ payroll }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

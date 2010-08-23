@@ -1,0 +1,9 @@
+/* Chris Edgemon 2010 */
+body {
+    background-color: red;
+    color: blue;
+    }
+
+#header {
+    background-color: green;
+    }

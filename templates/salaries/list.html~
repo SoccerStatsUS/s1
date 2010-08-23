@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript">
+  $(document).ready(function() { $(".tablesorter").tablesorter();})
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="horizontal">
+  {% for year in years %}
+  <li><a href="{% url salaries_by_team year team %}">{{ year }}</a></li>
+  {% endfor %}  
+</ul>
+
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Base</th>
+      <th>Guaranteed</th>
+    <tr>
+  </thead>
+<tbody>
+{% for salary in salaries %}
+<tr>
+  <td>{{ salary.full_name }}</td>
+  <td>{{ salary.team }}</td>
+  <td>{{ salary.base }}</td>
+  <td>{{ salary.guaranteed }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
