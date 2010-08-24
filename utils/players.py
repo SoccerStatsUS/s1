@@ -5,9 +5,16 @@ import re
 
 from BeautifulSoup import BeautifulSoup
 
+from soccer.places.models import State, Country
+
 letters = "abcdefghijklmnopqrstuvwxyz"
 
 players_url = "http://www.mlssoccer.com/players/%s/%s"
+
+
+states = [e.name for e in State.objects.all()]
+
+
 
 
 def clean_html(text):
@@ -189,8 +196,10 @@ def get_players():
     return urls.items()
 
 
-def create_person(name, slug):
+
+def scrape_person(name, slug=''):
     from soccer.players.models import Person
+    usa = Country.objects.get(name="United States")
     scraped = PlayerScraper(name)
     full_name, birthdate, birthplace, height = scraped.find_info()
     p = Person(name=name, 
@@ -199,6 +208,16 @@ def create_person(name, slug):
                birthdate=birthdate,
                birthplace=birthplace,
                full_name=full_name)
+
+    if "United States" in birthplace:
+        p.nationality = usa
+    for state in states:
+        if state in birthplace:
+            p.nationality = usa
+
+    names = name.split(" ")
+    if len(names) == 2:
+        p.last_name = names[1]
     p.save()
     
     

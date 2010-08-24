@@ -1,0 +1,17 @@
+mapping = {
+    "FC Dallas": "Football Club Dallas",
+    "Dallas Burn": "Football Club Dallas",
+    "F.C. Dallas": "Football Club Dallas",
+    "C.D. Chivas USA": "Club Deportivo Chivas USA",
+    'Chicago Fire': 'Chicago Fire S.C.',
+    "Chivas USA": "Club Deportivo Chivas USA",
+    "Red Bull New York": "New York Red Bulls",
+    "Metrostars": "New York Red Bulls",
+    "MetroStars": "New York Red Bulls",
+    "Miami Fusion": "Miami Fusion F.C.",
+    "Seattle Sounders": "Seattle Sounders FC",
+    "San Jose Clash": "San Jose Earthquakes",
+    "New York/New Jersey MetroStars": "New York Red Bulls",
+    'Kansas City Wiz': "Kansas City Wizards",
+    "Houston 1836": "Houston Dynamo",
+    }

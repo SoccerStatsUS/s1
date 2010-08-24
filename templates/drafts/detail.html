@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript">
+  $(document).ready(function() { $(".tablesorter").tablesorter();})
+</script>
+{% endblock %}
+
+{% block content %}
+
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Name</th>
+      <th>Team</th>
+    <tr>
+  </thead>
+<tbody>
+{% for pick in picks %}
+<tr>
+  <td>{{ pick.number }}</td>
+  <td>{{ pick.name }}</td>
+  <td>{{ pick.team }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

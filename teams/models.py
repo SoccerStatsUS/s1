@@ -23,7 +23,12 @@ team_mapping = {
     }
 
 
-
+class TeamManager(models.Manager):
+    def get_team(self, name):
+        from soccer.teams.aliases import mapping
+        if name in mapping:
+            name = mapping[name]
+        return Team.objects.get(name=name)
 
 class Team(models.Model):
     name = models.CharField(max_length=200)
@@ -35,10 +40,12 @@ class Team(models.Model):
     founded = models.IntegerField(null=True, blank=True)
     defunct = models.BooleanField()
 
+    objects = TeamManager()
+
     class Meta:
         ordering = ('short_name',)
-        
-        
+
+    
 
     def __unicode__(self):
         return self.name

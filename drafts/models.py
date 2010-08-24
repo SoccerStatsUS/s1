@@ -21,3 +21,9 @@ class Pick(models.Model):
     player = models.ForeignKey(Person, default=no_player)
     name = models.CharField(max_length='250')
     number = models.IntegerField()
+
+    class Meta:
+        ordering = ('-draft', 'number')
+
+    def __unicode__(self):
+        return "%s:%s (%s)" % (self.number, self.name, self.player)
