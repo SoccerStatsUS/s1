@@ -1,13 +1,14 @@
 from django.db import models
 
+from soccer.main.tools import no_player
 from soccer.players.models import Person
 from soccer.teams.models import Team
 
-def no_player():
-    return Person.objects.get(name='No Player')
-
 
 class Draft(models.Model):
+    """Represents a draft that took place.  
+    Consists of a name, a year, and a list of picks
+    in sequential order."""
     name = models.CharField(max_length=50, unique=True, null=False)
     year = models.IntegerField()
 
@@ -16,6 +17,7 @@ class Draft(models.Model):
     
 
 class Pick(models.Model):
+    """Represents a single pick in a Draft."""
     draft = models.ForeignKey(Draft)
     team = models.ForeignKey(Team)
     player = models.ForeignKey(Person, default=no_player)

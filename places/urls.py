@@ -9,4 +9,8 @@ urlpatterns = patterns('soccer.places.views',
                            'country_detail',
                            name='country_detail'),
 
+                       url(r'^(?P<name>\w+)/$',
+                           'birthplace_detail',
+                           name='birthplace_detail'),
+
 )

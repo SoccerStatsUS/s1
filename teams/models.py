@@ -48,7 +48,7 @@ class Team(models.Model):
     
 
     def __unicode__(self):
-        return self.name
+        return self.short_name
 
 
 class Stadium(models.Model):

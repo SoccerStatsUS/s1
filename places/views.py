@@ -6,7 +6,6 @@ from soccer.places.models import Country
 from soccer.players.models import Person
 
 
-
 def country_index(request):
     countries = Country.objects.all()
     return render_to_response("places/index.html",
@@ -21,4 +20,11 @@ def country_detail(request, id):
                               {"people": people},
                               context_instance=RequestContext(request)
                               )    
+
+def birthplace_detail(request, name):
+    people = Person.objects.filter(birthplace__icontains=name)
+    return render_to_response("places/country_detail.html",
+                              {"people": people},
+                              context_instance=RequestContext(request)
+                              )        
     

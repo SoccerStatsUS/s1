@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'soccer.places',
     'soccer.players',
     'soccer.salaries',
+    'soccer.stats',
     'soccer.teams',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

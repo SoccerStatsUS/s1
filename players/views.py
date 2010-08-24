@@ -8,8 +8,13 @@ from soccer.drafts.models import Person
 
 def person_index(request):
     people = Person.objects.all()
+    no_person = Person.objects.get(name='No Person')
+    context =  {
+        "people": people,
+        "no_person": no_person,
+        }
     return render_to_response("players/index.html",
-                              {"people": people},
+                              context,
                               context_instance=RequestContext(request)
                               )    
 

@@ -21,7 +21,11 @@
 {% for pick in picks %}
 <tr>
   <td>{{ pick.number }}</td>
+  {% if pick.player %}
+  <td><a href="{% url person_detail pick.player.id %}">{{ pick.player }}</a></td>
+  {% else %}
   <td>{{ pick.name }}</td>
+  {% endif %}
   <td>{{ pick.team }}</td>
 </tr>
 {% endfor %}

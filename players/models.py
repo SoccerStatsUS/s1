@@ -1,20 +1,35 @@
 from django.db import models
 
 from soccer.places.models import Country
+from soccer.players.aliases import mapping
 
-# Create your models here.
 
+class PersonManager(models.Manager):
+    def get_person(self, name):
+        if name in mapping:
+            name = mapping[name]
+        return Person.objects.get(name=name)
+
+    
 class Person(models.Model):
+
+    # Identity
     name = models.CharField(max_length=500)
     full_name = models.CharField(max_length=500)
     first_name = models.CharField(max_length=250, blank=True)
     last_name = models.CharField(max_length=250, blank=True)
     nickname = models.CharField(max_length=100, blank=True)
-    mls_slug = models.CharField(max_length=250, blank=True)
+
+    # Stats
     height = models.IntegerField(null=True, blank=True)
     birthdate = models.DateField(null=True, blank=True)
     birthplace = models.CharField(max_length=250, null=True, blank=True)
     nationality = models.ForeignKey(Country)
+
+    # Cruft
+    mls_slug = models.CharField(max_length=250, blank=True)
+
+    objects = PersonManager()
 
     class Meta:
         ordering = ('last_name',)
@@ -28,6 +43,6 @@ class Person(models.Model):
         return self.name
 
     def __unicode__(self):
-        return self.get_name
+        return self.name
         
 
