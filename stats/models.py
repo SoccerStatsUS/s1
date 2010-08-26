@@ -6,7 +6,10 @@ from soccer.players.models import Person
 from soccer.teams.models import Team
 
 def find_aliases():
-    for e in CareerStat.objects.all():
+    # Temporary debugging program
+    # Find names that don't work.
+    m = SeasonStat
+    for e in m.objects.all():
         try: find_player(e)
         except: print e
             
@@ -22,14 +25,22 @@ def create_career_stats():
         cs.save()
 
 
-def find_player(model):
+def find_player(model, save=False):
     """Some sort of way to automatically figure out who 
     a given name refers to."""
     from soccer.players.models import Person
-    p = Person.objects.get_person(model.name)
-    model.player = p
+    if save:
+        p = Person.objects.get_person(model.name)
+    else:
+        try:
+            p = Person.objects.get_person(model.name)
+        except:
+            print model.name
     # Waiting for errors
-    # model.save()
+    if save:
+        model.player = p
+        model.save()
+    
     
 
 def career_stats_dict():
@@ -129,7 +140,12 @@ class SeasonStat(models.Model):
     year = models.IntegerField()
     position = models.CharField(max_length=7, default="X")
     number = models.IntegerField(default=-1)
+    #base_salary = models.IntegerField(default=0)
+    #guaranteed_salary = models.IntegerField(default=0)
 
     def __unicode__(self):
         return "%s: %s (%s)" % (self.name, self.team, self.year)
+
+    class Meta:
+        ordering = ('player', 'year')
             

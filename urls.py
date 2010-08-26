@@ -12,6 +12,7 @@ urlpatterns = patterns('',
                        url(r'^international/', include('soccer.international.urls')),                       
                        url(r'^leagues/', include('soccer.leagues.urls')),
                        url(r'^salaries/', include('soccer.salaries.urls')),
+                       url(r'^stats/', include('soccer.stats.urls')),
                        url(r'^teams/', include('soccer.teams.urls')),
 
                        # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 

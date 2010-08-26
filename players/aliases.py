@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 mapping = {
     "Mo Johnston": "Maurice Johnston",
     "Manny Lagos": "Manuel Lagos",
@@ -52,6 +55,11 @@ mapping = {
     "Branco": "Claudio Vaz Leal",
     "Welton": "Welton Melo",
     "Alvaro Pires": "Álvaro Henrique Alves Pires",
+    "Andre Luiz": "André Luiz Moreira",
+    "Jair": "Anselmo Ribeiro",
+    "Scott Buete": "George Buete",
+    "Luis Miguel Escalada": "Luis Escalada",
+    "Walter Garcia": "Walter Ariel García",
     
     }
 

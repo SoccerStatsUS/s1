@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from soccer.drafts.models import Person
-
+from soccer.stats.models import SeasonStat, CareerStat
 
 
 def person_index(request):
@@ -20,8 +20,15 @@ def person_index(request):
 
 def person_detail(request, id):
     person = Person.objects.get(id=id)
+    seasons = SeasonStat.objects.filter(player=person)
+    career = CareerStat.objects.get(player=person)
+    context = {
+        "person": person,
+        "seasons": seasons,
+        "career": career,
+        }
     return render_to_response("players/detail.html",
-                              {"person": person},
+                              context,
                               context_instance=RequestContext(request)
                               )    
     

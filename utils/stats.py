@@ -27,6 +27,8 @@ team_names = {
     "sea": "Seattle Sounders",
     "sje": "San Jose Earthquakes",
     "tor": "Toronto FC",
+    "mia": "Miami Fusion",
+    "tb": "Tampa Bay Mutiny",
     }
     
     
@@ -93,7 +95,12 @@ def scrape_stats(team, year):
     if not table:
         return []
     field_stats = table[0]
-    gk_stats = table[1]
+    
+    # At least one page doesn't have goalkeeper stats.  Whoops, mlssoccer.com
+    try:
+        gk_stats = table[1]
+    except IndexError:
+        gk_stats = []
     
     header = field_stats.findAll("thead")[0] # the second entry is team totals
     individual_stats = field_stats.findAll("tbody")[0]
