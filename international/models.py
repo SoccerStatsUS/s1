@@ -13,6 +13,8 @@ class Confederation(models.Model):
         return self.short_name
 
 
+# Not using national teamms yet.  Not sure where these should go.
+
 #class Team(models.Model):
 #    confederation = models.ForeignKey(Confederation, related_name='teams')
 #    country = models.ForeignKey(Country, related_name='teams')

@@ -5,7 +5,6 @@ from django.template import RequestContext
 from soccer.drafts.models import Draft, Pick
 
 
-
 def draft_index(request):
     drafts = Draft.objects.all()
     return render_to_response("drafts/index.html",

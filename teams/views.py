@@ -6,6 +6,8 @@ from soccer.teams.models import Team
 from soccer.stats.models import SeasonStat
 
 def index(request):
+    """A list of all teams in the database."""
+
     teams = Team.objects.order_by("short_name")
     return render_to_response("teams/index.html",
                               {"teams": teams},
@@ -13,6 +15,10 @@ def index(request):
                               )
 
 def team_and_year(request, id, year):
+    """Detailed information for a team for a given year.
+    Contains player stats and game details."""
+    # Game details not yet implemented.
+
     team = Team.objects.get(id=id)
     stats = SeasonStat.objects.filter(team=team, year=year)
     context = {
@@ -24,6 +30,9 @@ def team_and_year(request, id, year):
                               context_instance=RequestContext(request)
                               )
                               
+
+# Probably shouldn't be using both of these.  
+# Should probably just be using slugs.
 
 def team_by_slug(request, slug):
     return team_view(request, Team.objects.get(slug=slug))
