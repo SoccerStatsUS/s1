@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript">
+  $(document).ready(function() { $(".tablesorter").tablesorter();})
+</script>
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Team</th>
+      <th>Year</th>
+      <th>GP</th>
+      <th>GS</th>
+      <th>Min</th>
+      <th>Goals</th>
+      <th>Assists</th>
+    <tr>
+  </thead>
+<tbody>
+{% for stat in stats %}
+<tr>
+  <td><a href="{% url person_detail stat.player.id %}">{{ stat.player }}</a></td>
+  <td><a href="{% url team_by_id stat.team.id %}">{{ stat.team }}</a></td>
+  <td><a href="{% url year_stats stat.year %}">{{ stat.year }}</a></td>
+  <td>{{ stat.games_played }}</td>
+  <td>{{ stat.games_started }}</td>
+  <td>{{ stat.minutes }}</td>
+  <td>{{ stat.goals }}</td>
+  <td>{{ stat.assists }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
