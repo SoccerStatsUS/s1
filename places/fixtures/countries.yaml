@@ -1,0 +1,676 @@
+- fields: {full_name: '', name: Afghanistan, population: 29117000}
+  model: places.country
+  pk: 43
+- fields: {full_name: '', name: Albania, population: 3195000}
+  model: places.country
+  pk: 137
+- fields: {full_name: '', name: Algeria, population: 35423000}
+  model: places.country
+  pk: 36
+- fields: {full_name: '', name: American Samoa, population: 69000}
+  model: places.country
+  pk: 198
+- fields: {full_name: '', name: Andorra, population: 84082}
+  model: places.country
+  pk: 196
+- fields: {full_name: '', name: Angola, population: 18993000}
+  model: places.country
+  pk: 60
+- fields: {full_name: '', name: Anguilla, population: 15000}
+  model: places.country
+  pk: 215
+- fields: {full_name: '', name: Antigua and Barbuda, population: 89000}
+  model: places.country
+  pk: 193
+- fields: {full_name: '', name: Argentina, population: 40518951}
+  model: places.country
+  pk: 33
+- fields: {full_name: '', name: Armenia, population: 3238000}
+  model: places.country
+  pk: 136
+- fields: {full_name: '', name: Aruba, population: 107000}
+  model: places.country
+  pk: 188
+- fields: {full_name: '', name: Australia, population: 22430886}
+  model: places.country
+  pk: 54
+- fields: {full_name: '', name: Austria, population: 8372930}
+  model: places.country
+  pk: 94
+- fields: {full_name: '', name: Azerbaijan, population: 8997400}
+  model: places.country
+  pk: 92
+- fields: {full_name: '', name: Bahamas, population: 346000}
+  model: places.country
+  pk: 174
+- fields: {full_name: '', name: Bahrain, population: 807000}
+  model: places.country
+  pk: 159
+- fields: {full_name: '', name: Bangladesh, population: 164425000}
+  model: places.country
+  pk: 8
+- fields: {full_name: '', name: Barbados, population: 257000}
+  model: places.country
+  pk: 178
+- fields: {full_name: '', name: Belarus, population: 9471900}
+  model: places.country
+  pk: 88
+- fields: {full_name: '', name: Belgium, population: 10827519}
+  model: places.country
+  pk: 77
+- fields: {full_name: '', name: Belize, population: 322100}
+  model: places.country
+  pk: 175
+- fields: {full_name: '', name: Benin, population: 9212000}
+  model: places.country
+  pk: 91
+- fields: {full_name: '', name: Bermuda, population: 65000}
+  model: places.country
+  pk: 200
+- fields: {full_name: '', name: Bhutan, population: 708000}
+  model: places.country
+  pk: 162
+- fields: {full_name: '', name: Bolivia, population: 10031000}
+  model: places.country
+  pk: 85
+- fields: {full_name: '', name: Bosnia and Herzegovina, population: 3760000}
+  model: places.country
+  pk: 128
+- fields: {full_name: '', name: Botswana, population: 1978000}
+  model: places.country
+  pk: 147
+- fields: {full_name: '', name: Brazil, population: 193252604}
+  model: places.country
+  pk: 6
+- fields: {full_name: '', name: British Virgin Islands, population: 23000}
+  model: places.country
+  pk: 212
+- fields: {full_name: '', name: Brunei, population: 407000}
+  model: places.country
+  pk: 173
+- fields: {full_name: '', name: Bulgaria, population: 7576751}
+  model: places.country
+  pk: 98
+- fields: {full_name: '', name: Burkina Faso, population: 16287000}
+  model: places.country
+  pk: 63
+- fields: {full_name: '', name: Burundi, population: 8519000}
+  model: places.country
+  pk: 93
+- fields: {full_name: '', name: Cambodia, population: 13395682}
+  model: places.country
+  pk: 70
+- fields: {full_name: '', name: Cameroon, population: 19958000}
+  model: places.country
+  pk: 59
+- fields: {full_name: '', name: Canada, population: 33630000}
+  model: places.country
+  pk: 37
+- fields: {full_name: '', name: Cape Verde, population: 513000}
+  model: places.country
+  pk: 170
+- fields: {full_name: '', name: Cayman Islands, population: 57000}
+  model: places.country
+  pk: 204
+- fields: {full_name: '', name: Central African Republic, population: 4506000}
+  model: places.country
+  pk: 120
+- fields: {full_name: '', name: Chad, population: 11274106}
+  model: places.country
+  pk: 75
+- fields: {full_name: '', name: Chile, population: 17118000}
+  model: places.country
+  pk: 61
+- fields: {full_name: '', name: China, population: 1339024000}
+  model: places.country
+  pk: 2
+- fields: {full_name: '', name: Colombia, population: 45581000}
+  model: places.country
+  pk: 30
+- fields: {full_name: '', name: Comoros, population: 691000}
+  model: places.country
+  pk: 164
+- fields: {full_name: '', name: Cook Islands, population: 20000}
+  model: places.country
+  pk: 213
+- fields: {full_name: '', name: Costa Rica, population: 4640000}
+  model: places.country
+  pk: 119
+- fields: {full_name: '', name: Croatia, population: 4435056}
+  model: places.country
+  pk: 123
+- fields: {full_name: '', name: Cuba, population: 11204000}
+  model: places.country
+  pk: 76
+- fields: {full_name: '', name: Cyprus, population: 801851}
+  model: places.country
+  pk: 160
+- fields: {full_name: '', name: Czech Republic, population: 10512397}
+  model: places.country
+  pk: 79
+- fields: {full_name: '', name: "C\xF4te d'Ivoire", population: 21571000}
+  model: places.country
+  pk: 55
+- fields: {full_name: '', name: Dem. Rep. of Congo, population: 67827000}
+  model: places.country
+  pk: 20
+- fields: {full_name: '', name: Denmark, population: 5540241}
+  model: places.country
+  pk: 111
+- fields: {full_name: '', name: Djibouti, population: 879000}
+  model: places.country
+  pk: 157
+- fields: {full_name: '', name: Dominica, population: 67000}
+  model: places.country
+  pk: 199
+- fields: {full_name: '', name: Dominican Republic, population: 10225000}
+  model: places.country
+  pk: 83
+- fields: {full_name: '', name: East Timor, population: 1171000}
+  model: places.country
+  pk: 156
+- fields: {full_name: '', name: Ecuador, population: 14233000}
+  model: places.country
+  pk: 69
+- fields: {full_name: '', name: Egypt, population: 78884000}
+  model: places.country
+  pk: 17
+- fields: {full_name: '', name: El Salvador, population: 6194000}
+  model: places.country
+  pk: 107
+- fields: {full_name: '', name: Equatorial Guinea, population: 693000}
+  model: places.country
+  pk: 163
+- fields: {full_name: '', name: Eritrea, population: 5224000}
+  model: places.country
+  pk: 114
+- fields: {full_name: '', name: Estonia, population: 1340021}
+  model: places.country
+  pk: 153
+- fields: {full_name: '', name: Ethiopia, population: 79221000}
+  model: places.country
+  pk: 16
+- fields: {full_name: '', name: Falkland Islands, population: 3000}
+  model: places.country
+  pk: 220
+- fields: {full_name: '', name: Faroe Islands, population: 48760}
+  model: places.country
+  pk: 206
+- fields: {full_name: '', name: Federated States of Micronesia, population: 111000}
+  model: places.country
+  pk: 185
+- fields: {full_name: '', name: Fiji, population: 854000}
+  model: places.country
+  pk: 158
+- fields: {full_name: '', name: Finland, population: 5366600}
+  model: places.country
+  pk: 113
+- fields: {full_name: '', name: France, population: 65447374}
+  model: places.country
+  pk: 21
+- fields: {full_name: '', name: Gabon, population: 1501000}
+  model: places.country
+  pk: 151
+- fields: {full_name: '', name: Gambia, population: 1751000}
+  model: places.country
+  pk: 148
+- fields: {full_name: '', name: Georgia, population: 4436000}
+  model: places.country
+  pk: 122
+- fields: {full_name: '', name: Germany, population: 81802257}
+  model: places.country
+  pk: 15
+- fields: {full_name: '', name: Ghana, population: 24333000}
+  model: places.country
+  pk: 48
+- fields: {full_name: '', name: Gibraltar, population: 31000}
+  model: places.country
+  pk: 211
+- fields: {full_name: '', name: Greece, population: 11306183}
+  model: places.country
+  pk: 74
+- fields: {full_name: '', name: Greenland, population: 57000}
+  model: places.country
+  pk: 203
+- fields: {full_name: '', name: Grenada, population: 104000}
+  model: places.country
+  pk: 189
+- fields: {full_name: Guadeloupe, name: Guadeloupe, population: 405500}
+  model: places.country
+  pk: 226
+- fields: {full_name: '', name: Guam, population: 180000}
+  model: places.country
+  pk: 181
+- fields: {full_name: '', name: Guatemala, population: 14377000}
+  model: places.country
+  pk: 68
+- fields: {full_name: '', name: Guernsey, population: 61811}
+  model: places.country
+  pk: 202
+- fields: {full_name: '', name: Guinea, population: 10324000}
+  model: places.country
+  pk: 81
+- fields: {full_name: '', name: Guinea-Bissau, population: 1647000}
+  model: places.country
+  pk: 150
+- fields: {full_name: '', name: Guyana, population: 761000}
+  model: places.country
+  pk: 161
+- fields: {full_name: '', name: Haiti, population: 10188000}
+  model: places.country
+  pk: 84
+- fields: {full_name: '', name: Honduras, population: 7616000}
+  model: places.country
+  pk: 96
+- fields: {full_name: '', name: Hong Kong, population: 7026400}
+  model: places.country
+  pk: 100
+- fields: {full_name: '', name: Hungary, population: 10013628}
+  model: places.country
+  pk: 86
+- fields: {full_name: '', name: Iceland, population: 317900}
+  model: places.country
+  pk: 176
+- fields: {full_name: '', name: India, population: 1186580000}
+  model: places.country
+  pk: 3
+- fields: {full_name: '', name: Indonesia, population: 234181400}
+  model: places.country
+  pk: 5
+- fields: {full_name: '', name: Iran, population: 75078000}
+  model: places.country
+  pk: 18
+- fields: {full_name: '', name: Iraq, population: 31467000}
+  model: places.country
+  pk: 40
+- fields: {full_name: '', name: Ireland, population: 4459300}
+  model: places.country
+  pk: 121
+- fields: {full_name: '', name: Isle of Man, population: 80000}
+  model: places.country
+  pk: 197
+- fields: {full_name: '', name: Israel, population: 7602400}
+  model: places.country
+  pk: 97
+- fields: {full_name: '', name: Italy, population: 60380912}
+  model: places.country
+  pk: 24
+- fields: {full_name: '', name: Jamaica, population: 2730000}
+  model: places.country
+  pk: 141
+- fields: {full_name: '', name: Japan, population: 127380000}
+  model: places.country
+  pk: 11
+- fields: {full_name: '', name: Jersey, population: 90050}
+  model: places.country
+  pk: 192
+- fields: {full_name: '', name: Jordan, population: 6472000}
+  model: places.country
+  pk: 104
+- fields: {full_name: '', name: Kazakhstan, population: 16197000}
+  model: places.country
+  pk: 64
+- fields: {full_name: '', name: Kenya, population: 40863000}
+  model: places.country
+  pk: 32
+- fields: {full_name: '', name: Kiribati, population: 100000}
+  model: places.country
+  pk: 191
+- fields: {full_name: '', name: Kuwait, population: 3051000}
+  model: places.country
+  pk: 138
+- fields: {full_name: '', name: Kyrgyzstan, population: 5550000}
+  model: places.country
+  pk: 110
+- fields: {full_name: '', name: Laos, population: 6436000}
+  model: places.country
+  pk: 106
+- fields: {full_name: '', name: Latvia, population: 2237800}
+  model: places.country
+  pk: 142
+- fields: {full_name: '', name: Lebanon, population: 4255000}
+  model: places.country
+  pk: 125
+- fields: {full_name: '', name: Lesotho, population: 2084000}
+  model: places.country
+  pk: 144
+- fields: {full_name: '', name: Liberia, population: 3476608}
+  model: places.country
+  pk: 131
+- fields: {full_name: '', name: Libya, population: 6546000}
+  model: places.country
+  pk: 103
+- fields: {full_name: '', name: Liechtenstein, population: 35904}
+  model: places.country
+  pk: 207
+- fields: {full_name: '', name: Lithuania, population: 3329227}
+  model: places.country
+  pk: 134
+- fields: {full_name: '', name: Luxembourg, population: 502207}
+  model: places.country
+  pk: 171
+- fields: {full_name: '', name: Macau, population: 542200}
+  model: places.country
+  pk: 166
+- fields: {full_name: '', name: Madagascar, population: 20146000}
+  model: places.country
+  pk: 58
+- fields: {full_name: '', name: Malawi, population: 15692000}
+  model: places.country
+  pk: 66
+- fields: {full_name: '', name: Malaysia, population: 28306700}
+  model: places.country
+  pk: 45
+- fields: {full_name: '', name: Maldives, population: 314000}
+  model: places.country
+  pk: 177
+- fields: {full_name: '', name: Mali, population: 14517176}
+  model: places.country
+  pk: 67
+- fields: {full_name: '', name: Malta, population: 416333}
+  model: places.country
+  pk: 172
+- fields: {full_name: '', name: Marshall Islands, population: 63000}
+  model: places.country
+  pk: 201
+- fields: {full_name: '', name: Mauritania, population: 3366000}
+  model: places.country
+  pk: 133
+- fields: {full_name: '', name: Mauritius, population: 1297000}
+  model: places.country
+  pk: 154
+- fields: {full_name: '', name: Mexico, population: 108396211}
+  model: places.country
+  pk: 12
+- fields: {full_name: '', name: Moldova, population: 3563800}
+  model: places.country
+  pk: 130
+- fields: {full_name: '', name: Monaco, population: 33000}
+  model: places.country
+  pk: 208
+- fields: {full_name: '', name: Mongolia, population: 2769800}
+  model: places.country
+  pk: 140
+- fields: {full_name: '', name: Montenegro, population: 626000}
+  model: places.country
+  pk: 165
+- fields: {full_name: '', name: Montserrat, population: 5900}
+  model: places.country
+  pk: 218
+- fields: {full_name: '', name: Morocco, population: 31899000}
+  model: places.country
+  pk: 39
+- fields: {full_name: '', name: Mozambique, population: 23406000}
+  model: places.country
+  pk: 51
+- fields: {full_name: '', name: Myanmar (Burma), population: 50496000}
+  model: places.country
+  pk: 25
+- fields: {full_name: '', name: Namibia, population: 2212000}
+  model: places.country
+  pk: 143
+- fields: {full_name: '', name: Nauru, population: 10000}
+  model: places.country
+  pk: 217
+- fields: {full_name: '', name: Nepal, population: 29853000}
+  model: places.country
+  pk: 41
+- fields: {full_name: '', name: Netherlands, population: 16608500}
+  model: places.country
+  pk: 62
+- fields: {full_name: '', name: Netherlands Antilles, population: 201000}
+  model: places.country
+  pk: 180
+- fields: {full_name: '', name: New Zealand, population: 4384900}
+  model: places.country
+  pk: 124
+- fields: {full_name: '', name: Nicaragua, population: 5822000}
+  model: places.country
+  pk: 109
+- fields: {full_name: '', name: Niger, population: 15891000}
+  model: places.country
+  pk: 65
+- fields: {full_name: '', name: Nigeria, population: 158259000}
+  model: places.country
+  pk: 9
+- fields: {full_name: '', name: Niue, population: 1500}
+  model: places.country
+  pk: 221
+- fields: {full_name: No Country, name: No Country, population: 0}
+  model: places.country
+  pk: 225
+- fields: {full_name: '', name: North Korea, population: 23991000}
+  model: places.country
+  pk: 50
+- fields: {full_name: '', name: Northern Mariana Islands, population: 88000}
+  model: places.country
+  pk: 194
+- fields: {full_name: Norway, name: Norway, population: 4898100}
+  model: places.country
+  pk: 117
+- fields: {full_name: '', name: Oman, population: 2905000}
+  model: places.country
+  pk: 139
+- fields: {full_name: '', name: Pakistan, population: 170330000}
+  model: places.country
+  pk: 7
+- fields: {full_name: '', name: Palau, population: 20000}
+  model: places.country
+  pk: 214
+- fields: {full_name: '', name: Palestine, population: 3935249}
+  model: places.country
+  pk: 127
+- fields: {full_name: '', name: Panama, population: 3322576}
+  model: places.country
+  pk: 135
+- fields: {full_name: '', name: Papua New Guinea, population: 6888000}
+  model: places.country
+  pk: 101
+- fields: {full_name: '', name: Paraguay, population: 6460000}
+  model: places.country
+  pk: 105
+- fields: {full_name: '', name: Peru, population: 29461933}
+  model: places.country
+  pk: 42
+- fields: {full_name: '', name: Philippines, population: 94013200}
+  model: places.country
+  pk: 13
+- fields: {full_name: '', name: Pitcairn Islands, population: 50}
+  model: places.country
+  pk: 224
+- fields: {full_name: '', name: Poland, population: 38167329}
+  model: places.country
+  pk: 35
+- fields: {full_name: '', name: Portugal, population: 10636888}
+  model: places.country
+  pk: 78
+- fields: {full_name: '', name: Puerto Rico, population: 3998000}
+  model: places.country
+  pk: 126
+- fields: {full_name: '', name: Qatar, population: 1696563}
+  model: places.country
+  pk: 149
+- fields: {full_name: '', name: Republic of China (Taiwan), population: 23131093}
+  model: places.country
+  pk: 52
+- fields: {full_name: '', name: Republic of Macedonia, population: 2048620}
+  model: places.country
+  pk: 146
+- fields: {full_name: '', name: Republic of the Congo, population: 3759000}
+  model: places.country
+  pk: 129
+- fields: {full_name: '', name: Romania, population: 21466174}
+  model: places.country
+  pk: 56
+- fields: {full_name: '', name: Russia, population: 141927297}
+  model: places.country
+  pk: 10
+- fields: {full_name: '', name: Rwanda, population: 10277000}
+  model: places.country
+  pk: 82
+- fields: {full_name: '', name: Saint Helena, population: 4500}
+  model: places.country
+  pk: 219
+- fields: {full_name: '', name: Saint Kitts and Nevis, population: 52000}
+  model: places.country
+  pk: 205
+- fields: {full_name: '', name: Saint Lucia, population: 174000}
+  model: places.country
+  pk: 183
+- fields: {full_name: '', name: Saint Vincent and the Grenadines, population: 109000}
+  model: places.country
+  pk: 187
+- fields: {full_name: '', name: Samoa, population: 179000}
+  model: places.country
+  pk: 182
+- fields: {full_name: '', name: San Marino, population: 32386}
+  model: places.country
+  pk: 210
+- fields: {full_name: '', name: Saudi Arabia, population: 26246000}
+  model: places.country
+  pk: 47
+- fields: {full_name: '', name: Senegal, population: 12861000}
+  model: places.country
+  pk: 72
+- fields: {full_name: '', name: Serbia, population: 9856000}
+  model: places.country
+  pk: 87
+- fields: {full_name: '', name: Seychelles, population: 85000}
+  model: places.country
+  pk: 195
+- fields: {full_name: '', name: Sierra Leone, population: 5836000}
+  model: places.country
+  pk: 108
+- fields: {full_name: '', name: Singapore, population: 4987600}
+  model: places.country
+  pk: 116
+- fields: {full_name: '', name: Slovakia, population: 5426645}
+  model: places.country
+  pk: 112
+- fields: {full_name: '', name: Slovenia, population: 2063130}
+  model: places.country
+  pk: 145
+- fields: {full_name: '', name: Solomon Islands, population: 536000}
+  model: places.country
+  pk: 167
+- fields: {full_name: '', name: Somalia, population: 9359000}
+  model: places.country
+  pk: 90
+- fields: {full_name: '', name: South Africa, population: 49991300}
+  model: places.country
+  pk: 26
+- fields: {full_name: '', name: South Korea, population: 49773145}
+  model: places.country
+  pk: 27
+- fields: {full_name: '', name: Spain, population: 46072834}
+  model: places.country
+  pk: 28
+- fields: {full_name: '', name: Sri Lanka, population: 20410000}
+  model: places.country
+  pk: 57
+- fields: {full_name: '', name: Sudan, population: 39154490}
+  model: places.country
+  pk: 34
+- fields: {full_name: '', name: Suriname, population: 524000}
+  model: places.country
+  pk: 169
+- fields: {full_name: '', name: Swaziland, population: 1202000}
+  model: places.country
+  pk: 155
+- fields: {full_name: '', name: Sweden, population: 9373379}
+  model: places.country
+  pk: 89
+- fields: {full_name: '', name: Switzerland, population: 7782900}
+  model: places.country
+  pk: 95
+- fields: {full_name: '', name: Syria, population: 22505000}
+  model: places.country
+  pk: 53
+- fields: {full_name: '', name: "S\xE3o Tom\xE9 and Pr\xEDncipe", population: 165000}
+  model: places.country
+  pk: 184
+- fields: {full_name: '', name: Tajikistan, population: 7075000}
+  model: places.country
+  pk: 99
+- fields: {full_name: '', name: Tanzania, population: 45040000}
+  model: places.country
+  pk: 31
+- fields: {full_name: '', name: Thailand, population: 63525062}
+  model: places.country
+  pk: 22
+- fields: {full_name: '', name: Togo, population: 6780000}
+  model: places.country
+  pk: 102
+- fields: {full_name: '', name: Tokelau, population: 1200}
+  model: places.country
+  pk: 222
+- fields: {full_name: '', name: Tonga, population: 104000}
+  model: places.country
+  pk: 190
+- fields: {full_name: '', name: Trinidad and Tobago, population: 1344000}
+  model: places.country
+  pk: 152
+- fields: {full_name: '', name: Tunisia, population: 10432500}
+  model: places.country
+  pk: 80
+- fields: {full_name: '', name: Turkey, population: 72561312}
+  model: places.country
+  pk: 19
+- fields: {full_name: '', name: Turkmenistan, population: 5177000}
+  model: places.country
+  pk: 115
+- fields: {full_name: '', name: Turks and Caicos Islands, population: 33000}
+  model: places.country
+  pk: 209
+- fields: {full_name: '', name: Tuvalu, population: 10000}
+  model: places.country
+  pk: 216
+- fields: {full_name: '', name: U.S. Virgin Islands, population: 109000}
+  model: places.country
+  pk: 186
+- fields: {full_name: '', name: Uganda, population: 33796000}
+  model: places.country
+  pk: 38
+- fields: {full_name: '', name: Ukraine, population: 45871738}
+  model: places.country
+  pk: 29
+- fields: {full_name: '', name: United Arab Emirates, population: 4707000}
+  model: places.country
+  pk: 118
+- fields: {full_name: '', name: United Kingdom, population: 62008049}
+  model: places.country
+  pk: 23
+- fields: {full_name: '', name: United States, population: 310040000}
+  model: places.country
+  pk: 4
+- fields: {full_name: '', name: Uruguay, population: 3372000}
+  model: places.country
+  pk: 132
+- fields: {full_name: '', name: Uzbekistan, population: 27794000}
+  model: places.country
+  pk: 46
+- fields: {full_name: '', name: Vanuatu, population: 246000}
+  model: places.country
+  pk: 179
+- fields: {full_name: '', name: Vatican City, population: 800}
+  model: places.country
+  pk: 223
+- fields: {full_name: '', name: Venezuela, population: 28897000}
+  model: places.country
+  pk: 44
+- fields: {full_name: '', name: Vietnam, population: 85789573}
+  model: places.country
+  pk: 14
+- fields: {full_name: '', name: Western Sahara, population: 530000}
+  model: places.country
+  pk: 168
+- fields: {full_name: '', name: Yemen, population: 24256000}
+  model: places.country
+  pk: 49
+- fields: {full_name: '', name: Zambia, population: 13257000}
+  model: places.country
+  pk: 71
+- fields: {full_name: '', name: Zimbabwe, population: 12644000}
+  model: places.country
+  pk: 73
+
