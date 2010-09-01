@@ -41,8 +41,13 @@ def team_by_id(request, id):
     return team_view(request, Team.objects.get(id=id))
 
 def team_view(request, team):
+    years = team.years_with_stats()
+    context = {
+        'team': team,
+        'years': years,
+        }
     return render_to_response("teams/team.html",
-                              {"team": team},
+                              context,
                               context_instance=RequestContext(request)
                               )
     

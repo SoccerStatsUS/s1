@@ -6,21 +6,36 @@ from django.template import RequestContext
 
 from soccer.salaries.models import Salary
 
+def get_salary_years():
+    CACHE_KEY = "salary_years"
+    years = cache.get(CACHE_KEY)
+    if years is None:
+        years = sorted(set([e.year for e in Salary.objects.all()]))
+        cache.set(CACHE_KEY, years)
+    return years
+        
+
 
 def index(request):
     most_recent_year = Salary.objects.order_by("-year")[0].year
     salaries = Salary.objects.filter(year=most_recent_year) 
     by_team = {}
     team_and_base = salaries.values_list("team", "base")
-    
+
     for team, base in team_and_base:
         if team in by_team:
             by_team[team] += base
         else:
             by_team[team] = base
     team_numbers = sorted(by_team.items(), key=lambda e: -e[1])
+
+    context = {
+        "team_numbers": team_numbers,
+        "salary_years": get_salary_years(),
+        }
+
     return render_to_response('salaries/index.html', 
-                              {"team_numbers": team_numbers},
+                              context,
                               context_instance=RequestContext(request)
                               )
 

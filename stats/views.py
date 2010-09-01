@@ -7,6 +7,7 @@ from django.template import RequestContext
 from soccer.stats.models import SeasonStat, CareerStat
 
 
+
 def stats_index(request):
     most_recent_year = Salary.objects.order_by("-year")[0].year
     salaries = Salary.objects.filter(year=most_recent_year) 

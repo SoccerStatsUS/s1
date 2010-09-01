@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 
 from soccer.leagues.models import League
@@ -23,12 +24,33 @@ team_mapping = {
     }
 
 
+def seasons_with_stats_by_team():
+    # Would like to make a lot more efficient.
+    from soccer.stats.models import SeasonStat
+    CACHE_KEY = "seasons_with_stats_by_team"
+    d = cache.get(CACHE_KEY)
+    if d is None:
+        d = {}
+        for s in SeasonStat.objects.all():
+            team = s.team
+            year = s.year
+            if team not in d:
+                d[team] = set()
+            d[team].add(year)
+
+        for k, v in d.items():
+            d[k] = sorted(v)
+        cache.set(CACHE_KEY, d, 24 * 60 * 60)
+    return d
+
+
 class TeamManager(models.Manager):
     def get_team(self, name):
         from soccer.teams.aliases import mapping
         if name in mapping:
             name = mapping[name]
         return Team.objects.get(name=name)
+
 
 class Team(models.Model):
     name = models.CharField(max_length=200)
@@ -45,8 +67,9 @@ class Team(models.Model):
     class Meta:
         ordering = ('short_name',)
 
-    
-
+    def years_with_stats(self):
+        return seasons_with_stats_by_team()[self]
+        
     def __unicode__(self):
         return self.short_name
 

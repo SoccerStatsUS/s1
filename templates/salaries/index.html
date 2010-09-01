@@ -2,6 +2,12 @@
 
 {% block content %}
 
+<ul>
+  {% for year in salary_years %}
+  <li><a href="{% url salaries_by_year year %}">{{ year }}</a></li>
+  {% endfor %}
+</ul>
+
 <table>
 {% for team, payroll in team_numbers %}
 <tr>
