@@ -17,6 +17,8 @@ def median_salary(qs, type="base"):
         mids = qs[mid:mid+2]
         attrs = [getattr(e, type) for e in mids]
         return sum(attrs) / 2
+
+def average_salary
     
 
 class SalaryManager(models.Manager):

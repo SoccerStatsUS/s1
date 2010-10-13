@@ -13,4 +13,6 @@ strip_tags
 * use some signals
 * use some transaction management
 * use paginators
-
+* maybe some rss
+* some fixtures
+* some tests
