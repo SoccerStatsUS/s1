@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from soccer.feeds import Feed, Entry
+from soccer.feeds.models import Feed, Entry
 
 ENTRIES_PER_PAGE = 25
 
@@ -12,7 +12,9 @@ def story_list(request):
     paginator = Paginator(entries, ENTRIES_PER_PAGE)
 
     if "source" in request.GET:
-        entries = entries.filter(author=request.GET.get('source__name')
+        entries = entries.filter(author=request.GET.get('source__name'))
+
+    paginator = Paginator(entries, 20)
     
     try:
         page = int(request.GET.get("page", 1))
@@ -25,7 +27,7 @@ def story_list(request):
         paginator_page = paginator.page(1)
 
     return render_to_response("feeds/list.html", {
-            "entries": paginator_entries,
+            "entries": paginator_page,
             }, context_instance=RequestContext(request)
                               )
 

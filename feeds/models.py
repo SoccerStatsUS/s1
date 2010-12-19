@@ -20,21 +20,6 @@ def parse_date_string(s):
     hour, minute, second = [int(e) for e in t.split("-")]
     return datetime.datetime(year, month, day, hour, minute, second)
 
-class TaggedItem(models.Model):
-
-    tag = models.SlugField()
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
-
-    content_object = generic.GenericForeignKey()
-
-    class Meta:
-        ordering = ["tag"]
-
-    def __unicode__(self):
-        return self.tag
-
-
 
 class Feed(models.Model):
 
@@ -49,15 +34,30 @@ class Feed(models.Model):
         self.save()
         
         for e in feed.entries:
-            content = e.content[0].value
-            if 
-            Entry.objects.create(
-                title=e.title,
-                summary=e.summary, 
-                source=self,
-                author=e.author,
-                pub_date=parse_date_string(e.published),
-                url = e.link,
+            if hasattr(e, 'updated_parsed'):
+                pub_date = datetime.datetime(*e.updated_parsed[:6])
+            elif hasattr(e, 'updated'):
+                pub_date = parse_date_string(e.updated)
+            elif hasattr(e, 'published'):
+                pub_date = parse_date_string(e.published)
+            else:
+                pub_date = None
+
+            if hasattr(e, 'author'):
+                author = e.author
+            else:
+                author = self.name
+                
+
+            matches = Entry.objects.filter(summary=e.summary)
+            if not matches:
+                Entry.objects.create(
+                    title=e.title,
+                    summary=e.summary, 
+                    source=self,
+                    author=author,
+                    pub_date=pub_date,
+                    url = e.link,
                 )
 
     def __unicode__(self):
@@ -74,9 +74,6 @@ class Entry(models.Model):
     pub_date = models.DateTimeField()
     url = models.CharField(max_length=100)
 
-    tags = generic.GenericRelation(TaggedItem)
-
-        
     def __unicode__(self):
         return "%s - %s" % (self.source.name, self.title)
         
