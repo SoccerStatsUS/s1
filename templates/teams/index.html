@@ -3,9 +3,14 @@
 {% block content %}
 
 <table>
+<tr>
+  <th>Name</th>
+  <th>League</th>
+  <th>Founded</th>
+</tr>
 {% for team in teams %}
 <tr>
-  <td>{{ team.name }}</td>
+  <td><a href="{% url team_by_id team.id %}">{{ team.name }}</a></td>
   <td>{{ team.league }}</td>
   <td>{{ team.founded }}</td>
 </tr>

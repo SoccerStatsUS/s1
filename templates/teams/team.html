@@ -2,21 +2,97 @@
 
 {% block content %}
 
-
-<ul>
-  {% for year in years %}
-  <li><a href="{% url team_and_year team.id year %}">{{ year }}</a></li>
-  {% endfor %}
-</ul>
+<div id="team">
 
 {% with team.league as league %}
-<ul>
-  <li>{{ team.full_name }}</li>
-  <li><a href="{% url league_by_id league.id %}">{{ league.name }}</a></li>
-  <li>{{ team.city }}</li>
-  <li>{{ team.founded }}</li>
-</ul>
+<table id="bio">
+<tr>
+  <td>Name</td><td>{{ team.name }}</td>
+</tr>
+<tr>
+  <td>League</td><td><a href="{% url league_by_id league.id %}">{{ league.name }}</a></td>
+</tr>
+<tr>
+  <td>City</td><td>{{ team.city }}</td>
+</tr>
+<tr>
+  <td>Founded in</td><td>{{ team.founded }}</td>
+</tr>
+</table>
 {% endwith %}
+
+<table id="years">
+
+  <tr>
+    {% for year in years %}
+    <td>
+      <a href="{% url team_and_year team.id year %}">{{ year }}</a>
+    </td>
+    {% endfor %}
+  </tr>
+
+</table>
+
+<h3>Team leaders</h3>
+
+<h4>Minutes</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Minutes</th>
+  </tr>
+  {% for leader in minutes %}
+  <tr>
+    <td>{{ leader.0 }}</td>
+    <td>{{ leader.1 }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<h4>Assists</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Assists</th>
+  </tr>
+  {% for leader in assists %}
+  <tr>
+    <td>{{ leader.0 }}</td>
+    <td>{{ leader.1 }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<h4>Goals</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Goals</th>
+  </tr>
+  {% for leader in goals %}
+  <tr>
+    <td>{{ leader.0 }}</td>
+    <td>{{ leader.1 }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<h4>Games</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Games</th>
+  </tr>
+  {% for leader in games %}
+  <tr>
+    <td>{{ leader.0 }}</td>
+    <td>{{ leader.1 }}</td>
+  </tr>
+  {% endfor %}
+</table>
 
 
 {% endblock %}

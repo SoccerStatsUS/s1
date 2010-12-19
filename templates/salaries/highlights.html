@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript">
+  $(document).ready(function() { $(".tablesorter").tablesorter();})
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="horizontal">
+  {% for year in years %}
+  <li><a href="{% url salaries_by_team year team %}">{{ year }}</a></li>
+  {% endfor %}  
+</ul>
+
+
+<h3>Best Value</h3>
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Minutes / $100</th>
+      <th>Base</th>
+      <th>Minutes</th>
+    <tr>
+  </thead>
+<tbody>
+{% for player, mpd, base, minutes, player_id in best_deals %}
+<tr>
+  <td><a href="{% url person_detail_id player_id %}">{{ player }}</a></td>
+  <td>{{ mpd|floatformat:2 }}</td>
+  <td>${{ base }}</td>
+  <td>{{ minutes }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+<h3>Highest paid</h3>
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Base</th>
+      <th>Guaranteed</th>
+    <tr>
+  </thead>
+<tbody>
+{% for salary in highest %}
+<tr>
+  <td><a href="{% url person_detail_id salary.player.id %}">{{ salary.player }}</a></td>
+  <td>{{ salary.team }}</td>
+  <td>{{ salary.base_pretty }}</td>
+  <td>{{ salary.guaranteed_pretty }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+<h3>Lowest paid</h3>
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Base</th>
+      <th>Guaranteed</th>
+    <tr>
+  </thead>
+<tbody>
+{% for salary in lowest %}
+<tr>
+  <td><a href="{% url person_detail_id salary.player.id %}">{{ salary.player }}</a></td>
+  <td>{{ salary.team }}</td>
+  <td>{{ salary.base_pretty }}</td>
+  <td>{{ salary.guaranteed_pretty }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

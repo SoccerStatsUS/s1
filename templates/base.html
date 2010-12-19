@@ -11,6 +11,10 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL}}js/jquery.tablesorter.min.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/cufon-yui.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/melbourne.font.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jeanluc.font.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/custom.js"></script>
 
 
   {% block extrahead %}{% endblock %}
@@ -33,8 +37,21 @@
 
 <body>
   <div id="header">
+    <div id="tagline">
     <h1><a href="/">SoccerOutsider.com</a></h1>
-  </div>
+    <h4><em>stats analysis and more</em></h4>
+    </div>
+
+    <div id="nav">
+      <ul>
+	<li><a href="/about">About</a></li>
+	<li><a href="{% url story_list %}">News</a></li>
+	<li><a href="{% url stats_index %}">Stats</a></li>
+	<li><a href="{% url salaries_index %}">Salaries</a></li>
+      </ul>
+    </div>
+    <div class="clear"></div>
+    </div>
   <hr />
 
   <div id="content">

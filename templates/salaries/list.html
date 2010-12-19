@@ -14,6 +14,11 @@
   {% endfor %}  
 </ul>
 
+<form action="{% url salaries_by_year year %}">
+{{ form.team }}
+<input type="submit" id="pick_team" value="Pick Team" />
+</form>
+
 
 <table class="tablesorter">
   <thead>
@@ -27,7 +32,7 @@
 <tbody>
 {% for salary in salaries %}
 <tr>
-  <td><a href="{% url person_detail salary.player.id %}">{{ salary.player }}</a></td>
+  <td><a href="{% url person_detail_id salary.player.id %}">{{ salary.player }}</a></td>
   <td>{{ salary.team }}</td>
   <td>{{ salary.base_pretty }}</td>
   <td>{{ salary.guaranteed_pretty }}</td>

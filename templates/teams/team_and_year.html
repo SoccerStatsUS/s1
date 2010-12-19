@@ -8,13 +8,22 @@
 
 {% block content %}
 
+
 {% with team.league as league %}
-<ul>
-  <li>{{ team.full_name }}</li>
-  <li><a href="{% url league_by_id league.id %}">{{ league.name }}</a></li>
-  <li>{{ team.city }}</li>
-  <li>{{ team.founded }}</li>
-</ul>
+<table id="bio">
+<tr>
+  <td>Name</td><td>{{ team.name }}</td>
+</tr>
+<tr>
+  <td>League</td><td><a href="{% url league_by_id league.id %}">{{ league.name }}</a></td>
+</tr>
+<tr>
+  <td>City</td><td>{{ team.city }}</td>
+</tr>
+<tr>
+  <td>Founded in</td><td>{{ team.founded }}</td>
+</tr>
+</table>
 {% endwith %}
 
 
@@ -34,7 +43,7 @@
 <tbody>
 {% for stat in stats %}
 <tr>
-  <td><a href="{% url person_detail stat.player.id %}">{{ stat.player }}</a></td>
+  <td><a href="{% url person_detail_id stat.player.id %}">{{ stat.player }}</a></td>
   <td><a href="{% url team_by_id stat.team.id %}">{{ stat.team }}</a></td>
   <td><a href="{% url year_stats stat.year %}">{{ stat.year }}</a></td>
   <td>{{ stat.games_played }}</td>

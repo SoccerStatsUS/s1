@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+s{% extends "base.html" %}
 
 {% block extrahead %}
 <script type="text/javascript">
@@ -22,7 +22,7 @@
 <tr>
   <td>{{ pick.number }}</td>
   {% if pick.player %}
-  <td><a href="{% url person_detail pick.player.id %}">{{ pick.player }}</a></td>
+  <td><a href="{% url person_detail_id pick.player.id %}">{{ pick.player }}</a></td>
   {% else %}
   <td>{{ pick.name }}</td>
   {% endif %}

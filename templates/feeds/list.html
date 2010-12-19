@@ -2,16 +2,16 @@
 
 {% block content %}
 
-
-<div id="news">
-<h3>News</h3>
-{% for e in news %}
+<ul>
+{% for e in entries.object_list %}
+<div class="news_entry">
 <h4><a href="{{ e.url }}">{{ e.title }} ({{ e.source }})</a></h4>
 <h4>{{ e.pub_date }}</h4>
 <p>{{ e.summary}}</p>
-<p class="read_more"><a href="{{ e.url }}">Read More</a></p>
-{% endfor %}
-<a href="{% url story_list %}">More news</a>
+<p><a href="{{ e.url }}">Read More</a></p>
 </div>
+{% endfor %}
+</ul>
+
 
 {% endblock %}

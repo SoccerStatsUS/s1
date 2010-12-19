@@ -8,15 +8,26 @@
 
 {% block content %}
 
-<ul>
-  <li>{{ person.name }}</li>
-  <li><a href="{% url country_detail person.nationality.id %}">{{ person.nationality }}</a></li>
-  <li>{{ person.birthdate }}</li>
-  <li>{{ person.birthplace }}</li>
-</ul>
+<div id="person">
 
 
-<table class="tablesorter">
+
+<table id="bio">
+<tr>
+  <td>Name</td><td>{{ person.name }}</td>
+</tr>
+<tr>
+  <td>Nationality</td><td><a href="{% url country_detail person.nationality.id %}">{{ person.nationality }}</a></td>
+</tr>
+<tr>
+  <td>Birthdate</td><td>{{ person.birthdate }}</td>
+</tr>
+<tr>
+  <td>Birthplace</td><td>{{ person.birthplace }}</td>
+</tr>
+</table>
+
+<table id="stats" class="tablesorter">
   <thead>
     <tr>
       <th>Team</th>
@@ -41,7 +52,7 @@
 </tr>
 {% endfor %}
 <tr>
-  <td></td>
+  <td>Career</td>
   <td></td>
   <td>{{ career.games_played }}</td>
   <td>{{ career.games_started }}</td>
@@ -51,6 +62,8 @@
 </tr>
 </tbody>
 </table>
+
+</div>
 
 
 {% endblock %}

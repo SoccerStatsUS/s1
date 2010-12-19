@@ -18,7 +18,7 @@
 <tbody>
 {% for person in people %}
 <tr>
-  <td><a href="{% url person_detail person.id %}">{{ person.name }}</a></td>
+  <td><a href="{% url person_detail_id person.id %}">{{ person.name }}</a></td>
   <td>{{ person.birthdate }}</td>
 </tr>
 {% endfor %}

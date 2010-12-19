@@ -9,6 +9,9 @@
 {% block content %}
 
 {% load stats_table %}
-{% render_stats stats %}
+
+{% render_stats goals table_attrs %}
+{% render_stats assists table_attrs %}
+{% render_stats offsides table_attrs %}
 
 {% endblock %}
