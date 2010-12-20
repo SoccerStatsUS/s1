@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+
+  {% for game in games %}
+  <tr>
+    <td>{{ game.date }}</td>
+    <td>{{ game.home_team }}</td>
+    <td>{{ game.score }}</td>
+    <td>{{ game.away_team }}</td>
+  </tr>
+  {% endfor %}
+  
+</table>
+
+{% endblock %}

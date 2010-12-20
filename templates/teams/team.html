@@ -23,13 +23,15 @@
 
 <table id="years">
 
-  <tr>
+
     {% for year in years %}
-    <td>
-      <a href="{% url team_and_year team.id year %}">{{ year }}</a>
-    </td>
+    <tr>
+      <td>{{ year }}</td>
+      <td><a href="{% url team_and_year team.id year %}">stats</a></td>
+      <td>schedule</td>
+    </tr>
     {% endfor %}
-  </tr>
+
 
 </table>
 

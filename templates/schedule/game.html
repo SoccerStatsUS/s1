@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+
+{{ game.date }}
+
+{{ game.score }}
+
+<ul>
+  {% for appearance in game.home_players %}
+  <li>{{ appearance.player }}</li>
+  {% endfor %}
+</ul>
+  
+</table>
+
+{% endblock %}

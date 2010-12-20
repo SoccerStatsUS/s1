@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript">
+  $(document).ready(function() { $(".tablesorter").tablesorter();})
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div id="person">
+
+<table id="bio">
+<tr>
+  <td>Name</td><td>{{ person.name }}</td>
+</tr>
+<tr>
+  <td>Birthdate</td><td>{{ person.birthdate }}</td>
+</tr>
+<tr>
+  <td>Birthplace</td><td>{{ person.birthplace }}</td>
+</tr>
+</table>
+
+</div>
+
+
+{% endblock %}
