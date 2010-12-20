@@ -7,23 +7,76 @@ from django.template import RequestContext
 from soccer.stats.models import SeasonStat, CareerStat
 
 
+mosts = [
+    "games_played", 
+    "games_started", 
+    "minutes", 
+    "goals", 
+    "assists", 
+    "shots", 
+    "fouls_committed", 
+    "fouls_suffered", 
+    "offsides"
+    ]
+
+
+most_tuples = [(e.replace("_", " ").title(), e) for e in mosts]
+
 
 def stats_index(request):
-    most_recent_year = Salary.objects.order_by("-year")[0].year
-    salaries = Salary.objects.filter(year=most_recent_year) 
-    by_team = {}
-    team_and_base = salaries.values_list("team", "base")
-    
-    for team, base in team_and_base:
-        if team in by_team:
-            by_team[team] += base
-        else:
-            by_team[team] = base
-    team_numbers = sorted(by_team.items(), key=lambda e: -e[1])
-    return render_to_response('salaries/index.html', 
-                              {"team_numbers": team_numbers},
+    years = sorted(set([e[0] for e in SeasonStat.objects.all().values_list("year")]))
+
+    context = {
+        "mosts": most_tuples,
+        "years": years,
+        }
+
+    return render_to_response('stats/index.html', 
+                              context,
                               context_instance=RequestContext(request)
                               )
+
+def year_leaders(request, year):
+    stats = SeasonStat.objects.filter(year=year)
+    
+    goals = list(stats.order_by("-goals")[:10])
+    assists = list(stats.order_by("-assists")[:10])
+    offsides = list(stats.order_by("-offsides")[:10])
+
+    table_attrs = [("GP", "games_played"), 
+                   ("GS", "games_started"),
+                   ("Goals", "goals"),
+                   ("Assists", "assists"),
+                   ("Offsides", "offsides"),
+                   ]
+
+
+    context = {
+        "goals": goals,
+        "assists": assists,
+        "offsides": offsides,
+        "table_attrs": table_attrs,
+        }
+
+    return render_to_response('stats/year_leaders.html', 
+                              context,
+                              context_instance=RequestContext(request)
+                              )
+
+
+def career_leaders(request, field):
+    field = field.replace("-", "_")
+    most = CareerStat.objects.order_by("-%s" % field)[:50]
+
+    context = {
+        "most": most,
+        "table_attrs": most_tuples,
+        }
+    return render_to_response('stats/most.html', 
+                              context,
+                              context_instance=RequestContext(request)
+                              )    
+    
 
 def year_stats(request, year):
     stats = SeasonStat.objects.filter(year=year).order_by("team")

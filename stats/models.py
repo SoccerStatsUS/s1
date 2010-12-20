@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.db.transaction import commit_on_success
 from django.forms.models import model_to_dict
 
+from soccer.leagues.models import League
 from soccer.main.tools import no_player
 from soccer.players.models import Person
 from soccer.teams.models import Team
@@ -105,6 +106,14 @@ class CareerStat(models.Model):
     penalty_goals = models.IntegerField()
     penalty_attempts = models.IntegerField()
 
+    # Goalkeeping
+    shutouts = models.IntegerField()
+    goals_allowed = models.IntegerField()
+    shots_faced = models.IntegerField()
+    saves = models.IntegerField()
+    penalties_allowed = models.IntegerField()
+    penalties_faced = models.IntegerField()
+
     def __unicode__(self):
         return self.name
 
@@ -159,6 +168,54 @@ class SeasonStat(models.Model):
 
     class Meta:
         ordering = ('player', 'year')
+
+
+class SeasonTotalManager(models.Manager):
+    pass
+    
+
+
+class SeasonTotal(models.Model):
+    year = models.IntegerField()
+    league = models.ForeignKey(League)
+
+    # Time
+    games_played = models.IntegerField()
+    games_started = models.IntegerField()
+    minutes = models.IntegerField()
+
+    # Scoring
+    goals = models.IntegerField()
+    game_winning_goals = models.IntegerField()
+    assists = models.IntegerField()
+    shots = models.IntegerField()
+    shots_on_goal = models.IntegerField()
+
+    # Fouls
+    fouls_committed = models.IntegerField()
+    fouls_suffered = models.IntegerField()
+    yellow_cards = models.IntegerField()
+    red_cards = models.IntegerField()
+
+    # Miscellaneous
+    offsides = models.IntegerField()
+    penalty_goals = models.IntegerField()
+    penalty_attempts = models.IntegerField()
+
+    # Goalkeeping
+    shutouts = models.IntegerField()
+    goals_allowed = models.IntegerField()
+    shots_faced = models.IntegerField()
+    saves = models.IntegerField()
+    penalties_allowed = models.IntegerField()
+    penalties_faced = models.IntegerField()
+
+    # Misc.
+    objects = SeasonTotalManager()
+
+
+
+
 
 
 class GameStat(models.Model):
