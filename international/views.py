@@ -5,7 +5,7 @@ from django.template import RequestContext
 from soccer.international.models import Confederation
 
 def index(request):
-    confederations = Confederation.objects.order_by("short_name")
+    confederations = Confederation.objects.order_by("short_name").exclude(id=7)
     return render_to_response("international/index.html",
                               {"confederations": confederations},
                               context_instance=RequestContext(request)
