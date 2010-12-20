@@ -68,7 +68,7 @@ class Team(models.Model):
         ordering = ('short_name',)
 
     def years_with_stats(self):
-        return seasons_with_stats_by_team()[self]
+        return seasons_with_stats_by_team().get(self, [])
         
     def __unicode__(self):
         return self.short_name
