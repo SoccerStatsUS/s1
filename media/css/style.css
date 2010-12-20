@@ -1,7 +1,159 @@
 /* Chris Edgemon 2010 */
-body {
-    background-color: #eee;
-    }
 
-#header {
-    }
+/* Generic styles */
+a {
+    color: #4D6DD6;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none; 
+    margin: 0; 
+    padding: 0;
+}
+
+table, td, th {
+    border-color: #333;
+    border-style: solid;
+}
+
+table {
+    border-width: 0 0 1px 1px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td, th {
+    margin: 0;
+    padding: 4px;
+    border-width: 1px 1px 0 0;
+}
+
+td {
+    background-color: #eee;
+}
+
+th {
+    background-color: #efe;
+}
+
+
+.clear {
+    clear: both;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+
+/* Header */
+
+#tagline {
+    margin: 20px 0 10px 0;
+}
+
+#header h1 a {
+    color: #333;
+}
+
+#header h1 {
+    margin: 0;
+    padding: 0;
+    display: inline;
+    color: #fff;
+}
+
+#header h4 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding-left: 10px;
+    display: inline;    
+}
+
+
+
+
+/* Header navigation */
+
+#nav {
+    margin-bottom: 10px;
+}
+
+#nav ul { 
+    position: relative; 
+    font-size: 15px; 
+    line-height: 20px; 
+}
+
+#nav ul li { 
+    position: relative; 
+    float: left; 
+    margin: 0; 
+    padding: 0; 
+
+
+}
+
+#nav ul li a { 
+    float: left; 
+    padding: 6px 12px; 
+    font-weight: bold; 
+    display: block; 
+}
+
+#nav ul li:hover {
+    background-color: #555;
+
+}
+
+#nav ul li:hover a {
+    color: #fff;
+}
+
+
+    
+
+
+#person table {
+    margin: 10px;
+}
+
+
+/* News pages */
+
+div#news {
+    width: 400px;
+}
+
+div#news a {
+    color: #48838a;
+}
+
+div#news a:hover {
+    text-decoration: underline;
+}
+
+.news_entry {
+    border: 2px dashed #999;
+    margin: 3px 0;
+    width: 49%;
+    padding: 0 10px;
+}
+
+.news_entry:hover {
+    border: 2px solid #999;
+
+.news_entry h4 a, .news_entry p a {
+    color: #333;
+    font-weight: bold;
+}
+
+.news_entry h4 {
+    color: #999;
+}
