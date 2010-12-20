@@ -7,7 +7,12 @@ from soccer.stats.models import SeasonStat
 
 create_url = lambda t,y: "http://www.mlssoccer.com/stats/club/%s/overall/%s/reg" % (t, y)
 
-to_int = lambda s: int(s.replace(",", ""))
+def to_int(s):
+    s = s.replace(",", '')
+    if s:
+        return int(s)
+    else:
+        return 0
 
 # Good enough names.
 team_names = {
@@ -67,6 +72,12 @@ def team_stats(team):
             print stat
             create_stat(stat)
 
+def year_stats(year):
+    for team in team_names.keys():
+        stats = scrape_stats(team, year)
+        for stat in stats:
+            create_stat(stat)
+
 def create_stat(d):
     nd = {}
     for key, value in d.items():
@@ -79,7 +90,12 @@ def create_stat(d):
             
         nkey = stat_mapping.get(key, key)
         nd[nkey] = nvalue
+
+    for key in ("shutouts", "goals_allowed", "shots_faced", 
+                "saves", "penalties_allowed", "penalties_faced"):
+        nd[key] = 0
     
+
     stat = SeasonStat(**nd)
     stat.save()
         
@@ -108,10 +124,15 @@ def scrape_stats(team, year):
     l = []
 
     keys = [e.contents[0] for e in header.findChildren("th")]
-    
+
     for row in individual_stats:
         if hasattr(row, 'findChildren'):
-            stats = [e.contents[0] for e in row.findChildren("td")]
+            # Work around for terrible mlssocer.com data integrity.
+            get_contents = lambda d: d.contents[0] if len(d) else ''
+            try:
+                stats = [get_contents(e) for e in row.findChildren("td")]
+            except:
+                import pdb; pdb.set_trace()
             d = dict(zip(keys, stats))
             
             # A few players don't have urls for some reason.
