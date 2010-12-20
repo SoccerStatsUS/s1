@@ -1,10 +1,10 @@
-from django.db import models
+from django.db import models 
 
 class Country(models.Model):
     "A country in the world."""
 
     name = models.CharField(max_length=100)
-    full_name = models.CharField(max_length=250)
+    full_name = models.CharField(max_length=250) # unused
     population = models.IntegerField()
     
     def __unicode__(self):
