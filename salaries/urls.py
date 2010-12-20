@@ -9,6 +9,10 @@ urlpatterns = patterns('soccer.salaries.views',
                            'by_year',
                            name='salaries_by_year'),
 
+                       url(r'^(?P<year>\d{4})/highlights$',
+                           'by_year_highlights',
+                           name='salaries_by_year_highlights'),
+
                        url(r'^(?P<team>\w+)/$',
                            'by_team_this_year',
                            name='salaries_by_team_this_year'),
