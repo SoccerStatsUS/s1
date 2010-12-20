@@ -76,6 +76,10 @@ mapping = {
     "Danny O\xe2\x80\x99Rourke": "Danny O'Rourke",
     "Bo Oshoniyi": "Adegboyega Oshoniyi",
     "Jean Phillippe Peguero": "Peguero Jean Philippe",
+    "Jean-Phillippe Peguero": "Peguero Jean Philippe",
+    "Jean-Philippe Peguero": "Peguero Jean Philippe",
+    "Peguero Jean Phillipe": "Peguero Jean Philippe",
+    "Peguero Jean Phillippe": "Peguero Jean Philippe",
     "Raimo de Vries": "Raimo De Vries",
     "Nino DaSilva": "Nino Da Silva",
     "Michael Slivinski": "Mike Slivinski",
@@ -100,6 +104,23 @@ mapping = {
     "Missael Espinoza": "Eduardo Espinoza",
     "Jose Palacios": "Arley Palacios",
     "Kwame Watson Siriboe": "Kwame Watson-Siriboe",
+    "Andrew Williams": "Andy Williams",
+    "Josh Gros": "Joshua Gros",
+    "Ed Johnson": "Edward Johnson",
+    'Ronnie O’Brien': "Ronnie O'Brien",
+    'Raimo deVries': "Raimo De Vries",
+    'Luis Angel Landin': "Luis Landin",
+    'Mike Seamon': "Michael Seamon",
+    'José Cancela': "Jose Cancela",
+    'Rafa Márquez': "Rafael Marquez",
+    'Paulo Araujo': "Paulo Junior",
+    'Dedi Ben-Dayan': "David Ben Dayan",
+    'Dan Wasson': "Daniel Wasson",
+    'Orlando Pérez': "Orlando Perez",
+    'Johnnie Garcia': "Johnny Garcia",
+    'Rodrigo López': 'Rodrigo Lopez',
+    "Mario Ivan Guerrero": "Ivan Guerrero",
+    'Fred Carreiro': 'Helbert Frederico Carreiro da Silva',
     }
 
 errors = {
@@ -118,6 +139,7 @@ errors = {
     "TyroneMarshall": "Tyrone Marshall",
     "Pablo Masteroeni": "Pablo Mastroeni",
     "Digitil Takawira": "Vitalis Takawira",
+    "Digital Takawira": "Vitalis Takawira",
     "Abusuku Ubukusumo": "Ubusuku Abukusumo",
     "Teal Burnbury": "Teal Bunbury",
     "Diego Guttierez": "Diego Gutierrez",
@@ -125,9 +147,46 @@ errors = {
     "Scott enedetti": "Scott Benedetti",
     "AJ DeLaGarza": "A.J. DeLaGarza",
     "Simon Elliot": "Simon Elliott",
+    "Hercules Gomez": "Herculez Gomez",
+    "Gerell Elliot": "Gerell Elliott",
+    "Esmundo Rodriquez": "Esmundo Rodriguez",
+    "Alexei Korol": "Aleksey Korol",
+    "Marcos Saragosa": "Marcelo Saragosa",
+    "Andrew Wiederman": "Andrew Wiedeman",
+    "Zack Kingsley": "Zach Kingsley",
+    'Darly Powell': "Daryl Powell",
+    "Jeay Heaps": "Jay Heaps",
+    "Ian Hennessy": "Ian Hennessey",
+    "Peter Villegas": "Petter Villegas",
+    "Ted Chromopoulos": "Ted Chronopoulos",
+    "Steve Yallop": "Frank Yallop",
+    "Albert Munoz": "Alberto Munoz",
+    'Vicent Figueroa': "Vicente Figueroa",
+    'Jayson Boyce': "Jason Boyce",
+    'Alex Prampin': 'Alan Prampin',
+    'Jamie Moreno': "Jaime Moreno",
+    'Tiyi Shipalane': 'Tiyiselani Shipalane',
+    'Nicolas Henandez': "Nicolas Hernandez",
+    'Niko Hernandez': "Nicolas Hernandez",
+    'Nicolas Hernadez': "Nicolas Hernandez",
+    'Julian Baudet': "Julien Baudet",
+    'Jose Luis Burciaga Jr.': "Jose Burciaga",
+    'Emilo Renteria': 'Emilio Renteria',
+    'Tenwya Bonseu': "Tenywa Bonseu",
+    'William DeOlivera': 'Willian Oliveira',
+    'Orando Perez': "Orlando Perez",
+    'Scott Buet Buete': "George Buete",
+}
 
-
+my_errors = {
+    # Maybe my error
+    "Garlon Cannon": "Garland Cannon",
+    "Bryan Haynes": "Brian Haynes",
     
     }
 
 mapping.update(errors)
+mapping.update(my_errors)
+
+
+
