@@ -4,4 +4,6 @@ urlpatterns = patterns('soccer.main.views',
                        url(r'^$',
                            'index',
                            name='homepage'),
+
+
 )
