@@ -3,7 +3,7 @@ from django.db import models
 from soccer.places.models import Country
 from soccer.players.aliases import mapping
 from soccer.utils.bios import load_bios
-from soccer.utils.scrapers import soccernet, nbcsports
+from soccer.utils import scrapers
 
 
 class PersonManager(models.Manager):
@@ -83,78 +83,11 @@ class Person(models.Model):
     def __unicode__(self):
         return self.name
 
-class SoccernetBioManager(models.Manager):
-
-    def unloaded_players(self):
-        loaded_ids = set([e.soccernet_id for e in SoccernetBio.objects.all()])
-        bios = soccernet.load_profiles()
-        for k in bios.keys():
-            if k in loaded_ids:
-                bios.pop(k)
-
-        return bios
-
-    def load_players(self):
-        for k, v in self.unloaded_players().items():
-            v['soccernet_id'] = k
-            sb = SoccernetBio(**v)
-            sb.save()
-        self.set_nationalities()
-
-    def no_countries(self):
-        return SoccernetBio.objects.filter(nationality=None)
-
-    def set_nationalities(self):
-        nc = self.no_countries()
-
-        d = {}
-        for e in Country.objects.all():
-            d[e.name] = e
-
-        if nc.count():
-            for e in nc:
-                bp = e.birthplace
-                if "," in bp:
-                    country = bp.split(",")[-1].strip()
-                else:
-                    country = bp.strip()
-
-                if country in d:
-                    e.nationality = d[country]
-                    e.save()
-
-
-                
-class SoccernetBio(models.Model):
-
-    name = models.CharField(max_length=500)
-    height = models.IntegerField(null=True, blank=True)
-    birthdate = models.DateField(null=True, blank=True)
-    birthplace = models.CharField(max_length=250, null=True, blank=True)
-    nationality = models.ForeignKey(Country, null=True)
-
-    soccernet_id = models.IntegerField(null=True, blank=True)
-
-    objects = SoccernetBioManager()
-
-    class Meta:
-        ordering = ('-birthdate',)
-
-    def __unicode__(self):
-        return self.name
-
-
-
 class GenericBioManager(models.Manager):
 
     def unloaded_players(self, source):
         loaded_ids = set([e.source_id for e in GenericBio.objects.filter(source=source)])
-        if source == 'soccernet':
-            bios = soccernet.load_profiles()
-        elif source == 'nbcsports':
-            bios = nbcsports.load_profiles()
-        else:
-            bios = {}
+        bios = scrapers.load_profiles(source)
 
         for k in bios.keys():
             if k in loaded_ids:
@@ -169,6 +102,10 @@ class GenericBioManager(models.Manager):
             sb = GenericBio(**v)
             sb.save()
         self.set_nationalities()
+
+    def load_all_players(self):
+        for source in 'cnnsi', 'nbcsports', 'soccerbase', 'soccernet':
+            self.load_players(source)
 
     def no_countries(self):
         return GenericBio.objects.filter(nationality=None)
@@ -213,4 +150,3 @@ class GenericBio(models.Model):
 
         
         
-
