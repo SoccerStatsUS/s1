@@ -8,7 +8,7 @@
   <tr>
     <td>{{ game.date }}</td>
     <td>{{ game.home_team }}</td>
-    <td>{{ game.score }}</td>
+    <td><a href="{% url game_detail game.id %}">{{ game.score }}</a></td>
     <td>{{ game.away_team }}</td>
   </tr>
   {% endfor %}

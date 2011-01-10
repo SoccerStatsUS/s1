@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 
+from BeautifulSoup import BeautifulSoup
 import datetime
 from decimal import Decimal
 import re
+import sys
 
 from abstract import AbstractPlayerScraper
 
 
 class NBCSportsPlayerScraper(AbstractPlayerScraper):
-    DATA_FOLDER = 'nbcsports'
+    FILE_PREFIX = 'nbcsports'
     PLAYER_URL = 'http://scores.nbcsports.msnbc.com/epl/players.asp?player=%s'
 
-    def scrape_player(self, id):
-        soup = self.open_page(id)
+    def scrape_player(self, soup):
         bio_masts = soup.findAll("table", {"class": 'shsSportMastHead'})
         if bio_masts:
             bio_mast = bio_masts[0]
@@ -50,12 +51,41 @@ class NBCSportsPlayerScraper(AbstractPlayerScraper):
         return bio
 
 
+
+    def scrape_stats(self, soup):
+
+        keys = ['Year', 'Team', 'MP', 'Min', 'G', 
+                'Ast', 'PS', 'SHTS', 'SOG', 
+                'YC', 'RC', 'FC', 'FS', 'CR', 'Off']        
+        
+        tr = soup.findAll("tr", {"class": "shsTableTtlRow"})
+        if not tr:
+            return
+
+        filter_empty = lambda l: [e.strip() for e in l if e.strip()]
+        stat_trs = soup.find('h2', text='Player Stats').parent.nextSibling.findAll("tr")
+        header = filter_empty(stat_trs[0].findAll('td', text=True))
+        
+        stats = []
+        for tr in stat_trs[1:-1]:
+            s = filter_empty(tr.findAll('td', text=True))
+            d = dict(zip(header, s))
+            nd = {}
+            for k in keys:
+                nd[k] = d[k]
+            stats.append(nd)
+            
+        return stats
+
+
+
             
 if __name__ == "__main__":
+    s = NBCSportsPlayerScraper()
     if len(sys.argv) > 1:
-        search_profiles(int(sys.argv[1]))
+        s.search_profiles(int(sys.argv[1]))
     else:
-        search_profiles()
+        s.search_profiles()
         
                              
         

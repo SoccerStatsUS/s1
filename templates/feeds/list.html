@@ -7,7 +7,7 @@
 <div class="news_entry">
 <h4><a href="{{ e.url }}">{{ e.title }} ({{ e.source }})</a></h4>
 <h4>{{ e.pub_date }}</h4>
-<p>{{ e.summary}}</p>
+<p>{{ e.summary|safe }}</p>
 <p><a href="{{ e.url }}">Read More</a></p>
 </div>
 {% endfor %}

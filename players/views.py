@@ -2,7 +2,7 @@ from django.core.cache import cache
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from soccer.players.models import Person, SoccernetBio
+from soccer.players.models import Person, GenericBio
 from soccer.stats.models import SeasonStat, CareerStat
 
 def person_list_generic(request, person_list):
@@ -46,7 +46,7 @@ def person_detail(request, person):
                               )   
 
 def soccernet_bio_detail(request, id):
-    person = SoccernetBio.objects.get(id=id)
+    person = GenericBio.objects.get(id=id)
     context = {
         'person': person,
         }

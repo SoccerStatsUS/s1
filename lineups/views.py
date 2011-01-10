@@ -4,13 +4,16 @@ from django.template import RequestContext
 from soccer.lineups.models import Game
 
 def index(request):
+    context = {"years": range(1996, 2011),
+               }
+
     return render_to_response("schedule/index.html",
-                              {},
+                              context,
                               context_instance=RequestContext(request))
 
 
 def year_schedule(request, year):
-    games = Game.objects.filter(year=year)
+    games = Game.objects.filter(date__year=year)
     context = {
         'games': games,
         }

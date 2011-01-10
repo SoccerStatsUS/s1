@@ -10,8 +10,8 @@ default_table_attrs = [("GP", "games_played"),
                        ]
 
 
-@register.inclusion_tag("templatetags/stats.html")
-def render_stats(stat_list, table_attrs=None):
+@register.inclusion_tag("templatetags/career_stats.html")
+def render_career_stats(stat_list, table_attrs=None):
     if table_attrs is None:
         table_attrs = default_table_attrs
     return {
@@ -19,4 +19,7 @@ def render_stats(stat_list, table_attrs=None):
         "table_attrs": table_attrs,
         }
 
+@register.inclusion_tag("templatetags/individual_stats.html")
+def render_individual_stats(stat_list, table_attrs=None):
+    return render_career_stats(stat_list, table_attrs)
 

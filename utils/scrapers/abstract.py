@@ -2,12 +2,8 @@
 
 from BeautifulSoup import BeautifulSoup, HTMLParseError
 import cPickle
-import datetime
-from decimal import Decimal
 import logging
 import os
-import re
-import sys
 import time
 import urllib2
 
@@ -25,38 +21,46 @@ logger.addHandler(to_file)
 
 
 class AbstractPlayerScraper(object):
-    DATA_DIR = '/home/chris/www/soccer/data'
-    DATA_FOLDER = None
+    DATA_DIR = '/home/chris/www/soccer/data/bios/'
+    FILE_PREFIX = None
     PLAYER_URL = None
+    GAME_URL = None
+    LOGGER = logger
 
     def __init__(self):
         pass
 
     @property
     def profiles_path(self):
-        return os.path.join(self.DATA_DIR, self.DATA_FOLDER, 'profiles')
+        return os.path.join(self.DATA_DIR, '%s.%s' % (self.FILE_PREFIX, 'profiles'))
 
+    @property
+    def stats_path(self):
+        return os.path.join(self.DATA_DIR, '%s.%s' % (self.FILE_PREFIX, 'stats'))
+    
     @property
     def max_path(self):
-        return os.path.join(self.DATA_DIR, self.DATA_FOLDER, 'max')
+        return os.path.join(self.DATA_DIR, '%s.%s' % (self.FILE_PREFIX, 'max'))
 
-    @property
-    def lock_path(self):
-        return os.path.join(self.DATA_DIR, self.DATA_FOLDER, 'lock')
+    def lock_path(self, type):
+        return os.path.join(self.DATA_DIR, '%s.%s.%s' % (self.FILE_PREFIX, type, 'lock'))
 
-    def is_locked(self):
-        return os.path.exists(self.lock_path)
+    def is_locked(self, type):
+        return os.path.exists(self.lock_path(type))
 
-    def create_lock(self):
-        f = open(self.lock_path, 'w')
+    def create_lock(self, type):
+        f = open(self.lock_path(type), 'w')
         f.close()
 
-    def unlock(self):
-        os.remove(self.lock_path)
+    def unlock(self, type):
+        os.remove(self.lock_path(type))
 
 
     def get_max(self):
-        return int(open(self.max_path).read())
+        if os.path.isfile(self.max_path):
+            return int(open(self.max_path).read())
+        else:
+            return 0
 
     def set_max(self, num):
         f  = open(self.max_path, 'w')
@@ -78,13 +82,30 @@ class AbstractPlayerScraper(object):
         d1.update(d)
         cPickle.dump(d1, f)
         f.close()
+
+    def load_stats(self):
+        if os.path.isfile(self.stats_path):
+            f = open(self.stats_path)
+            d = cPickle.load(f)
+            f.close()
+            return d
+        else:
+            return {}
+
+    def save_stats(self, d):
+        d1 = self.load_profiles()
+        f = open(self.stats_path, 'w')
+        d1.update(d)
+        cPickle.dump(d1, f)
+        f.close()
     
-    def search_profiles(self, count=1000):
-        if self.is_locked():
+    def search_profiles(self, count=300):
+        if self.is_locked('bio'):
             return
 
-        self.create_lock()
-        d = self.load_profiles()
+        self.create_lock('bio')
+        profiles = self.load_profiles()
+        stats = self.load_stats()
         
         start = self.get_max()
         end = start + count
@@ -95,34 +116,61 @@ class AbstractPlayerScraper(object):
             i += 1
             time.sleep(1.5)
             try:
-                scraped = self.scrape_player(num)
-                if 'birthdate' in scraped:
-                    if 'birthplace' in scraped:
-                        d[num] = scraped
+                soup = self.open_bio(num)
+                scraped = self.scrape_player(soup)
+                if 'name' in scraped:
+                    profiles[num] = scraped
+                    s = self.scrape_stats(soup)
+                    if s:
+                        stats[num] = s
+                        
             except HTMLParseError:
                 print "Couldn't parse %s" % num
-                logger.debug("Couldn't parse %s" % num)
+                logger.debug("%s couldn't parse %s" % (self.FILE_PREFIX, num))
             except urllib2.HTTPError:
                 print "Received HTTP Error for %s" % num
-                logger.error("Received HTTP Error for %s" % num)
-                self.unlock()
-                return
+                logger.error("%s received HTTP Error for %s" % (self.FILE_PREFIX, num))
+                self.unlock('bio')
+                return d
 
             if i % 25 == 0:
-                print "Downloading %s" % (start + i)
-                self.set_max(end)
-                self.save_profiles(d)
+                current = start + i
+                print "Downloading %s" % (current)
+                self.set_max(current)
+                self.save_profiles(profiles)
+                self.save_stats(stats)
 
         self.set_max(end)
-        self.save_profiles(d)
-        self.unlock()
-        return d
+        self.save_profiles(profiles)
+        self.save_stats(stats)
+        self.unlock('bio')
 
-    def scrape_player(self, id):
+    def scrape_player(self, soup):
         return NotImplementedError
 
-    def open_page(self, id):
+    def scrape_stats(self, soup):
+        return None
+
+
+    def clean_list(self, l):
+        return [e.strip() for e in l if e.strip()]        
+
+    def preprocess_bio_html(self, html):
+        return html
+
+    def preprocess_game_html(self, html):
+        return html.replace('&nbsp;', '')
+
+    def open_bio(self, id):
         url = self.PLAYER_URL % id
         html = urllib2.urlopen(url).read()
-        return BeautifulSoup(html)    
+        nhtml = self.preprocess_bio_html(html)
+        return BeautifulSoup(nhtml)    
+
+    def open_game_page(self, id):
+        url = self.GAME_URL % id
+        html = urllib2.urlopen(url).read()
+        nhtml = self.preprocess_game_html(html)
+        return BeautifulSoup(nhtml)
+        
 

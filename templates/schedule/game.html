@@ -2,11 +2,15 @@
 
 {% block content %}
 
-<table>
+
 
 {{ game.date }}
 
 {{ game.score }}
+
+{{ game }}
+
+xyz
 
 <ul>
   {% for appearance in game.home_players %}
@@ -14,6 +18,5 @@
   {% endfor %}
 </ul>
   
-</table>
 
 {% endblock %}

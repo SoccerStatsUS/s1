@@ -62,6 +62,9 @@ class GoalRecord(models.Model):
     team = models.ForeignKey(Team)
     
     description = models.CharField(max_length=500)
+
+    def __unicode__(self):
+        return self.description
      
 
 class GameAppearance(models.Model):

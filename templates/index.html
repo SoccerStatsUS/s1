@@ -8,7 +8,7 @@
 {% for e in news %}
 <h4><a href="{{ e.url }}">{{ e.title }} ({{ e.source }})</a></h4>
 <h4>{{ e.pub_date }}</h4>
-<p>{{ e.summary}}</p>
+<p>{{ e.summary|safe }}</p>
 <p class="read_more"><a href="{{ e.url }}">Read More</a></p>
 {% endfor %}
 <a href="{% url story_list %}">More news</a>

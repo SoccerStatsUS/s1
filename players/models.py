@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.transaction import commit_on_success
 
 from soccer.places.models import Country
 from soccer.players.aliases import mapping
@@ -95,8 +96,11 @@ class GenericBioManager(models.Manager):
 
         return bios
 
+    @commit_on_success
     def load_players(self, source):
         for k, v in self.unloaded_players(source).items():
+            if 'nationality' in v:
+                v.pop('nationality')
             v['source_id'] = k
             v['source'] = source
             sb = GenericBio(**v)
@@ -120,14 +124,15 @@ class GenericBioManager(models.Manager):
         if nc.count():
             for e in nc:
                 bp = e.birthplace
-                if "," in bp:
-                    country = bp.split(",")[-1].strip()
-                else:
-                    country = bp.strip()
+                if bp:
+                    if "," in bp:
+                        country = bp.split(",")[-1].strip()
+                    else:
+                        country = bp.strip()
 
-                if country in d:
-                    e.nationality = d[country]
-                    e.save()
+                    if country in d:
+                        e.nationality = d[country]
+                        e.save()
 
 class GenericBio(models.Model):
     
