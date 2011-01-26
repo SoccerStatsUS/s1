@@ -1,3 +1,7 @@
+import datetime
+
+from wikipedia import PlayerScraper
+
 from django.db import models
 from django.db.transaction import commit_on_success
 
@@ -8,6 +12,7 @@ from soccer.utils import scrapers
 
 
 class PersonManager(models.Manager):
+
     def get_person(self, name):
         if name in mapping:
             name = mapping[name]
@@ -49,6 +54,18 @@ class Person(models.Model):
     class Meta:
         ordering = ('last_name',)
 
+    def age(self, as_of=None):
+        if self.birthdate is None:
+            return None
+
+        if as_of is None:
+            as_of = datetime.date.today()
+
+        days = (as_of - self.birthdate).days
+
+        return days / 365.0
+        
+
     @property
     def get_name(self):
         if self.nickname:
@@ -79,6 +96,29 @@ class Person(models.Model):
                 print self.name, self.birthplace
                 self.save()
                 return True
+
+
+    def scrape_wikipedia(self, prefix):
+        data = PlayerScraper().get_player_info(self.name, prefix)
+        if data:
+            name, birthdate, birthplace, height = data
+            if not self.birthdate:
+                self.birthdate = birthdate
+            if not self.birthplace:
+                self.birthplace = birthplace
+            if not self.height:
+                self.height = height
+
+        self.save()
+
+
+    def migrate_person(self):
+        fields = [
+            'careerstat_set',
+            'gameappearance_set',
+            'gamestat_set',
+            'seasonstat_set',
+            ]
 
 
     def __unicode__(self):

@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 from soccer.main.tools import no_player
@@ -16,13 +18,43 @@ class Draft(models.Model):
     def __unicode__(self):
         return self.name
 
-    def pick_dict(self):
+    def teams(self):
+        t = [e[0] for e in self.pick_set.all().values_list("team")]
+        return Team.objects.filter(id__in=set(t))
+
+    def score_draft(self):
+        if not self.name.contains("USMNT Draft"):
+            raise
+
+        next_draft = Draft.objects.get(name__icontains="USMNT", year=self.year + 1)
+        return 
+
+
+    def average_age(self, start=1, end=None):
+        picks = self.pick_set.filter(number__gte=start)
+        if end is not None:
+            picks = picks.filter(number__lte=end)
+
+        dt = datetime.date(self.year, 1, 1)
+        ages = [e.player.age(dt) for e in picks]
+        ages = [e for e in ages if e]
+        average = sum(ages) / len(ages)
+        return average
+
+
+    @property
+    def order_dict(self):
         return dict([(e.player, e.number) for e in self.pick_set.all()])
+
+    @property
+    def team_dict(self):
+        return dict([(e.player, e.team) for e in self.pick_set.all()])
+
 
     def get_missing(self, other_draft):
         missing = {}
-        this_picks = self.pick_dict()
-        other_picks = other_draft.pick_dict()
+        this_picks = self.order_dict
+        other_picks = other_draft.order_dict
 
 
         for k, v in this_picks.items():
@@ -33,14 +65,58 @@ class Draft(models.Model):
         
     def get_diff(self, other_draft):
         diff = {}
-        other_picks = other_draft.pick_dict()
+        other_picks = other_draft.order_dict
 
-        for k, v in self.pick_dict().items():
+        team_dict = self.team_dict
+
+        for k, v in self.order_dict.items():
+            team = team_dict[k]
             if k in other_picks:
                 ov = other_picks[k]
-                diff[k] = (v, ov, ov-v)
+                diff[k] = (v, ov, ov-v, team)
+            else:
+                diff[k] = (v, '', '', team)
 
         return sorted(diff.items(), key=lambda e: e[1][0])
+
+    def score_draft(self, other_draft):
+
+        next_order = other_draft.order_dict
+
+        order_ids = {}
+        for k,v in next_order.items():
+            order_ids[k.id] = v
+            
+            
+        max_pick = len(next_order) + 1
+
+        
+        d = {}
+        for team, picks in self.by_team():
+            picks = [order_ids.get(p.player.id, max_pick) for p in picks]
+            d[team] = sorted(picks)
+
+
+        scores = []
+        for team, picks in d.items():
+            p = picks[:11]
+            average = sum(p) / 11.0
+            median = p[6]
+            scores.append((team, average, median))
+
+        scores = sorted(scores, key=lambda e: e[1])
+
+        return scores
+            
+            
+
+    def by_team(self):
+        l = []
+        teams = sorted(set([e.team for e in self.pick_set.all()]))
+        for team in teams:
+            picks = self.pick_set.filter(team=team)
+            l.append((team.name, picks))
+        return l
 
 
     class Meta:

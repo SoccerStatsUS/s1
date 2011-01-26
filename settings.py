@@ -1,6 +1,8 @@
 # Django settings for soccer project.
 
+#DEBUG = False
 DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

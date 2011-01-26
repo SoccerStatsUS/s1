@@ -30,11 +30,6 @@ def parse_line_2006(l):
     number = int(n.strip())
     team, name = [e.strip() for e in r.split("--")]
     return number, team, name
-
-def parse_line_2007(l):
-    n, r = l.split(".", 1)
-    number = int(n.strip())
-    team, name = [e.strip() for e in r.split("-") if e.strip()]
     return number, team, name
 
 def parse_line_2007(l):
@@ -115,7 +110,25 @@ def process_draft(fn, name, year, parser=parse_line):
                             number=i)
 
 
+draft_parsers = {
+    2004: parse_line_2004,
+    2005: parse_line_2005,
+    2006: parse_line_2006,
+    2007: parse_line_2007,
+    2008: parse_line_2008,
+    2009: parse_line,
+    2010: parse_line,
+    2011: parse_line_2011,
+    }
+    
 
+
+
+
+def run_draft(year):
+    p =  "/home/chris/www/soccer/data/usmnt_drafts/%s" % year
+    parser = draft_parsers[year]
+    process_draft(p, "%s USMNT Draft" % year, year, parser)
     
     
 def main():

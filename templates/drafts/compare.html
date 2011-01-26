@@ -3,12 +3,73 @@
 
 {% block content %}
 
+<div class="draft-table">
+<h3>Draft position</h3>
+<table>
+  <tr>
+    <th>Player</th>
+    <th>Team</th>
+    <th>{{ other_draft.year }}</th>
+    <th>{{ current_draft.year }}</th>
+    <th>+/-</th>
+  </tr>
+
+  {% for k, v in movement %}
+  <tr>
+    <td>{{ k }}</td>
+    <td>{{ v.3 }}</td>
+    <td>{{ v.1 }}</td>
+    <td>{{ v.0 }}</td>
+    <td>{{ v.2 }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<h3>Picks by Team</h3>
+{% for team, picks in by_team %}
+<h4>{{ team }}</h4>
+<ul>
+  {% for pick in picks %}
+  <li>{{ pick.number }}. {{ pick.name }}</li>
+  {% endfor %}
+</ul>
+{% endfor %}
+</div>
+
+
+{% if scores %}
+<h3>Scores</h3>
+
+<table>
+  <tr>
+    <th>Team</th>
+    <th>Average</th>
+    <th>Median</th>
+  </tr>
+  {% for team, average, median in scores %}
+  <tr>
+    <td>{{ team }}</td>
+    <td>{{ average|floatformat:2 }}</td>
+    <td>{{ median }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endif %}
+
+
+<div class="undrafted-table">
 <h3>Undrafted</h3>
 <table>
+  <tr>
+    <th>Player</th>
+    <th>{{ other_draft.year }}
+  </tr>
   {% for k, v in undrafted %}
 
   {% if forloop.counter > 10 %}
-  <tr class="hidden">
+  <tr class="not-hidden">
   {% else %}
   <tr>
   {% endif %}
@@ -16,37 +77,20 @@
     <td>{{ k }}</td>
     <td>{{ v }}</td>
   </tr>
+  {% comment %}
   {% if forloop.counter == 10 %}
   <tr>
     <td colspan="2"><a href="" class="expand">Expand</a></td>
   </tr>
   {% endif %}
+  {% endcomment %}
   {% endfor %}
 </table>
+</div>
 
 
-<h3>New</h3>
-<table>
-  {% for k, v in new %}
-  <tr>
-    <td>{{ k }}</td>
-    <td>{{ v }}</td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="clear"></div>
 
-
-<h3>Movement</h3>
-<table>
-  {% for k, v in movement %}
-  <tr>
-    <td>{{ k }}</td>
-    <td>{{ v.0 }}</td>
-    <td>{{ v.1 }}</td>
-    <td>{{ v.2 }}</td>
-  </tr>
-  {% endfor %}
-</table>
 
 <script type="text/javascript">
 
@@ -63,4 +107,4 @@
 </script>
 
 {% endblock %}
-f
+

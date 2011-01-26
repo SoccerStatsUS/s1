@@ -5,6 +5,24 @@
     display: none;
 }
 
+.highlight {
+    background-color: #aaa;
+}
+
+.draft-table {
+    float: left;
+    width: 49%;
+}
+
+.undrafted-table {
+    float: right;
+    width: 50%;
+}
+
+#footer {
+    height: 40px;
+}
+
 
 
 

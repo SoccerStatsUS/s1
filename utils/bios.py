@@ -2,12 +2,6 @@ import datetime
 
 BIOS_PATH = "/home/chris/www/soccer/data/bios.csv"
 
-def feet_inches_to_centimeters(feet, inches):
-    feet = int(feet)
-    inches = int(inches)
-    centimeters = 2.54 * ((12 * feet) + inches)
-    return int(round(centimeters))
-
 
 def load_bios():
     f = open(BIOS_PATH)

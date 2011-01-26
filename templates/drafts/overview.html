@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<table>
+  <tr>
+    <th>Year</th>
+    <th>1-50</th>
+    <th>51-100</th>
+    <th>101-150</th>
+    <th>Total</th>
+  </tr>
+  {% for year, a1, a2, a3, total in average_age %}
+  <tr>
+    <td>{{ year }}</td>
+    <td>{{ a1|floatformat:2 }}</td>
+    <td>{{ a2|floatformat:2 }}</td>
+    <td>{{ a3|floatformat:2 }}</td>
+    <td>{{ total|floatformat:2 }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
+

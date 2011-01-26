@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<table>
+  <tr>
+    <th>Num</th>
+    {% for e in years %}
+    <th>
+      {{ e }}
+    </th>
+    {% endfor %}
+  </tr>
+
+{% for row in pick_map %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    {% for col in row %}
+    <td value="{{ col.1 }}" >{{ col.0 }}</td>
+    {% endfor %}
+  </tr>
+{% endfor %}
+
+<script type="text/javascript">
+
+$("td").click(function(){
+  $("td").removeClass("highlight")
+  v = $(this).attr("value");
+  var s = "td[value=\"" + v + "\"]";
+  $(s).addClass("highlight");
+});
+
+</script>
+
+{% endblock %}

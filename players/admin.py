@@ -3,9 +3,10 @@ from django.contrib import admin
 from soccer.players.models import Person, GenericBio
 
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ("get_name", "nationality", "birthdate", "birthplace")
+    # Nationality is breaking this.
+    list_display = ("id", "get_name", "birthdate", "birthplace")
     list_filter = ("nationality", )
-    search_fields = ('full_name', 'nickname')
+    search_fields = ('full_name', 'name', 'nickname')
 
 
 class GenericBioAdmin(admin.ModelAdmin):

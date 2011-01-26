@@ -3,6 +3,9 @@
 {% block content %}
 
 
+Nothing to see here.
+
+{% comment %}
 <div id="news">
 <h3>News</h3>
 {% for e in news %}
@@ -13,5 +16,7 @@
 {% endfor %}
 <a href="{% url story_list %}">More news</a>
 </div>
+
+{% endcomment %}
 
 {% endblock %}
