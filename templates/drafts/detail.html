@@ -1,4 +1,4 @@
-s{% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block extrahead %}
 <script type="text/javascript">
@@ -7,6 +7,12 @@ s{% extends "base.html" %}
 {% endblock %}
 
 {% block content %}
+
+<ul>
+  {% for draft in other_drafts %}
+  <li><a href="{% url draft_compare this_draft.id draft.id %}">{{ draft.name }}</a></li>
+  {% endfor %}
+</ul>
 
 
 <table class="tablesorter">

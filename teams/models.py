@@ -60,7 +60,7 @@ class Team(models.Model):
     city = models.CharField(max_length=100)
     league = models.ForeignKey(League)
     founded = models.IntegerField(null=True, blank=True)
-    defunct = models.BooleanField()
+    defunct = models.BooleanField(default=True)
 
     objects = TeamManager()
 

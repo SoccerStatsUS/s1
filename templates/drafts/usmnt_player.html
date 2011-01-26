@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{{ picks }}
+
+<table>
+{% for e in picks %}
+<tr>
+  <td>{{ e.0 }}</td>
+  <td>{{ e.1 }}</td>
+  <td>{{ e.2 }}</td>
+<tr>
+{% endfor %}
+</table>
+
+{% endblock %}

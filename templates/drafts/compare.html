@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h3>Undrafted</h3>
+<table>
+  {% for k, v in undrafted %}
+
+  {% if forloop.counter > 10 %}
+  <tr class="hidden">
+  {% else %}
+  <tr>
+  {% endif %}
+
+    <td>{{ k }}</td>
+    <td>{{ v }}</td>
+  </tr>
+  {% if forloop.counter == 10 %}
+  <tr>
+    <td colspan="2"><a href="" class="expand">Expand</a></td>
+  </tr>
+  {% endif %}
+  {% endfor %}
+</table>
+
+
+<h3>New</h3>
+<table>
+  {% for k, v in new %}
+  <tr>
+    <td>{{ k }}</td>
+    <td>{{ v }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<h3>Movement</h3>
+<table>
+  {% for k, v in movement %}
+  <tr>
+    <td>{{ k }}</td>
+    <td>{{ v.0 }}</td>
+    <td>{{ v.1 }}</td>
+    <td>{{ v.2 }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+
+  $(".expand").click(function(){
+      //$(this).parent().parent().addClass('hidden');
+      var tbody = $(this).parent().parent().parent();
+      tbody.children("tr.hidden").addClass("not-hidden")
+      tbody.children("tr.hidden").removeClass("hidden")
+      //tbody.children("tr.not-hidden").addClass("hidden");
+      //tbody.children("tr.hidden").removeClass("not-hidden")
+      return false;
+  });
+
+</script>
+
+{% endblock %}
+f

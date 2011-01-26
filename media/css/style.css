@@ -1,5 +1,14 @@
 /* Chris Edgemon 2010 */
 
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
 /* Generic styles */
 a {
     color: #4D6DD6;

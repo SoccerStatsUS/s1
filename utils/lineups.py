@@ -257,9 +257,10 @@ class Lineup(object):
         
     def create_game_played(self, player, on=0, off=90):
         gp = GameAppearance(game=self.game,
-                       player=player,
-                       on=on,
-                       off=off)
+                            team=self.team,
+                            player=player,
+                            on=on,
+                            off=off)
         gp.save()
         self.games_played.append(gp)
 

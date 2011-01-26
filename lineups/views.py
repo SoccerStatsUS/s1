@@ -26,6 +26,7 @@ def game_detail(request, id):
     game = get_object_or_404(Game, id=id)
     context = {
         'game': game,
+        'goals': game.goals.all(),
         }
     return render_to_response("schedule/game.html",
                               context,

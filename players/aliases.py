@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 
 mapping = {
+    "Marvelle Wynne": "Marvell Wynne",
+    "Sasha Kljestan": "Sacha Kljestan",
+    "Robbie Rodgers": "Robbie Rogers",
+    "Kamini Hill": "Kamani Hill",
+    "Robbie Findlay": "Robbie Findley",
+    "Amechi Agwe": "Amaechi Igwe",
+
     "Mo Johnston": "Maurice Johnston",
     "Manny Lagos": "Manuel Lagos",
     "Ritchie Kotschau": "Richard Kotschau",
@@ -22,6 +29,7 @@ mapping = {
     "Fred": "Helbert Frederico Carreiro da Silva",
     "Thiago": "Thiago da Rosa Correa",
     "Jose Burciaga Jr.": "Jose Burciaga",
+    "Brian Namoff": "Bryan Namoff",
     "Mike Nugent": "Michael Nugent",
     "Dipsy Selolwane": "Diphetogo Selolwane",
     "Dedi Ben Dayan": "David Ben Dayan",
@@ -147,6 +155,7 @@ errors = {
     "Scott enedetti": "Scott Benedetti",
     "AJ DeLaGarza": "A.J. DeLaGarza",
     "Simon Elliot": "Simon Elliott",
+    "Frankie Simek": "Frank Simek",
     "Hercules Gomez": "Herculez Gomez",
     "Gerell Elliot": "Gerell Elliott",
     "Esmundo Rodriquez": "Esmundo Rodriguez",
