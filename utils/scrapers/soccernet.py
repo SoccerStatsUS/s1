@@ -194,9 +194,36 @@ class SoccernetPlayerScraper(AbstractPlayerScraper):
             'substitutions': substitutions,
             'red_cards': red_cards,
             }
-                         
+    
 
 
+import urllib2
+from BeautifulSoup import BeautifulSoup
+
+
+def get_contents(l):
+
+    if not hasattr(l, 'contents'):
+        s = l
+    else:
+        s = ""
+        for e in l.contents:
+            s += get_contents(e)
+    return s.strip()
+
+def process_game_stats(url):
+    text = urllib2.urlopen(url)
+    soup = BeautifulSoup(text)
+    div = soup.find("div", {"id": "statsDiv"})
+    
+    odds = soup.findAll("tr", {"class": "oddrow"})
+    evens = soup.findAll("tr", {"class": "evenrow"})
+    
+    stats = []
+    for e in odds + evens:
+        stats.append([get_contents(x) for x in e.findAll("td")])
+
+    return stats
 
 
             

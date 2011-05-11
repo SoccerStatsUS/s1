@@ -25,6 +25,7 @@ mapping = {
     "Mike Videira": "Michael Videira",
     "John Van Buskirk": "John van Buskirk",
     "Leighton O'brien": "Leighton O'Brien",
+    'Will Hesmer': "William Hesmer",
 
     "Mo Johnston": "Maurice Johnston",
     "Manny Lagos": "Manuel Lagos",
