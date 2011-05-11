@@ -1,4 +1,5 @@
 import datetime
+import feedparser
 import re
 
 from django.contrib.contenttypes.models import ContentType
@@ -28,7 +29,6 @@ class Feed(models.Model):
     soccer_only = models.BooleanField(default=False)
 
     def fetch(self):
-        import feedparser
         feed = feedparser.parse(self.url)
         self.last_updated = datetime.datetime.now()
         self.save()
