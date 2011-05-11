@@ -1,7 +1,5 @@
 import datetime
 
-from wikipedia import PlayerScraper
-
 from django.db import models
 from django.db.transaction import commit_on_success
 
@@ -99,6 +97,7 @@ class Person(models.Model):
 
 
     def scrape_wikipedia(self, prefix):
+        from wikipedia import PlayerScraper
         data = PlayerScraper().get_player_info(self.name, prefix)
         if data:
             name, birthdate, birthplace, height = data
