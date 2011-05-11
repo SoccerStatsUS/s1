@@ -29,10 +29,7 @@ DATABASES = {
     }
 }
 
-if socket.gethostname() == "rama":
-    CACHE_BACKEND = 'dummy://'
-else:
-    CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
 
 # Local time zone for this installation. Choices can be found here:
