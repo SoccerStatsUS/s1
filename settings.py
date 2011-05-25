@@ -107,4 +107,5 @@ INSTALLED_APPS = (
     'soccer.scores',
     'django.contrib.admin',
     'south',
+    'gunicorn',
 )
