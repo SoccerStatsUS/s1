@@ -54,18 +54,33 @@ class TeamManager(models.Manager):
 
 class Team(models.Model):
     name = models.CharField(max_length=200)
+
+    # Let's get rid of short name! It's really just another alias.
+    # No way, it's useful when you want to display a better name.
+    # Let's just be clear that it's very optional.
     short_name = models.CharField(max_length=200)
     slug = models.SlugField()
-    nickname = models.CharField(max_length=100)
+    nickname = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100)
+    
+    # League isn't really a property of a team...
     league = models.ForeignKey(League)
     founded = models.IntegerField(null=True, blank=True)
-    defunct = models.BooleanField(default=True)
+    defunct = models.BooleanField(default=False)
 
     objects = TeamManager()
 
     class Meta:
         ordering = ('short_name',)
+
+    def fancy_name(self):
+        return self.name
+
+    @property
+    def normal_name(self):
+        if self.short_name:
+            return self.short_name
+        return self.name
 
     def years_with_stats(self):
         return seasons_with_stats_by_team().get(self, [])

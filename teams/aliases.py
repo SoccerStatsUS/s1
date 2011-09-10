@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
 mapping = {
     "FC Dallas": "Football Club Dallas",
     "Dallas Burn": "Football Club Dallas",
@@ -37,6 +40,26 @@ CNNSI_MAPPING = {
     "New England": "New England Revolution",
     }
 
-mapping.update(CNNSI_MAPPING)
+CNNSI_BUNDESLIGA_MAPPING = {
+    "M&ouml;nchen": "Borussia Mönchengladbach",
+    "FC Schalke 04": "Fußball-Club Gelsenkirchen-Schalke 04",
+    "FSV Mainz 05": "1. Fußball- und Sportverein Mainz 05 e. V",
+    "Hannover 96": "Hannoverscher Sportverein von 1896",
+    "Borussia Dortmund": "Ballspielverein Borussia (BVB) Dortmund",
+    "Bayer Leverkusen": "Bayer 04 Leverkusen",
+    "Werder Bremen": "SV Werder Bremen",
+    "1899 Hoffenheim": "TSG 1899 Hoffenheim",
+    "1. FC N&uuml;rnberg": "1. FC Nuremberg",
+    "Bayern M&uuml;nchen": "FC Bayern Munich",
+    "Kaiserslautern": "1. FC Kaiserslautern",
+    "1. FC Koln": "1. FC Köln",
+    "Hamburger SV": "Hamburger Sport-Verein",
+    "SC Freiburg": "Sport-Club Freiburg",
+    "VfB Stuttgart": "Verein für Bewegungsspiele Stuttgart 1893 e. V.",
+    "Hertha BSC Berlin": "Hertha Berliner Sport-Club von 1892",
+    }
+    
 
+mapping.update(CNNSI_MAPPING)
+mapping.update(CNNSI_BUNDESLIGA_MAPPING)
 
