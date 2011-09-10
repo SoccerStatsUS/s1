@@ -16,6 +16,8 @@ class Game(models.Model):
     away_team = models.ForeignKey(Team, related_name="away_games")
     away_score = models.IntegerField()
 
+    competition = models.CharField(max_length=255)
+
     class Meta:
         ordering = ('date',)
         unique_together = [('home_team', 'date'), ('away_team', 'date')]
@@ -30,7 +32,7 @@ class Game(models.Model):
     
 
     def __unicode__(self):
-        return "%s: %s v %s" % (self.date, self.home_team, self.away_team)
+        return u"%s: %s v %s" % (self.date, self.home_team, self.away_team)
 
 
 
