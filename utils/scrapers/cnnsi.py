@@ -5,10 +5,107 @@ import datetime
 from decimal import Decimal
 import re
 import sys
+import urllib2
 
 from abstract import AbstractPlayerScraper
 
 GAME_URL = "http://sports.sportsillustrated.cnn.com/mls/boxscore.asp?gamecode=2010082103&show=pstats&ref="
+
+
+import datetime
+# All we want to do is get the score of a game.
+class CNNSIScoreboardScraper(object):
+
+    COMPETITION_URLS = {
+        "Major League Soccer": "http://sports.sportsillustrated.cnn.com/mls/scoreboard_daily.asp",
+        "Bundesliga": "http://sports.sportsillustrated.cnn.com/bund/scoreboard_daily.asp",
+        }
+
+    TEST_DATE = datetime.date(2011,8,27)
+
+    def __init__(self):
+        pass
+
+    def format_date(self, date):
+        return date.strftime("%Y%m%d")
+
+    def get_date_page(self, date, competition):
+        url = "%s?gameday=%s" % (self.COMPETITION_URLS[competition], self.format_date(date))
+        html = urllib2.urlopen(url).read()
+        return BeautifulSoup(html)
+
+
+    def process_date(self, date, competition):
+        soup = self.get_date_page(date, competition)
+        matches = [e.parent for e in soup.findAll("tr", "shsMatchDayRow")]
+        results = []
+        for match in matches:
+            # Need to handle bad dates anyway...
+            if date < datetime.date.today():
+                try:
+                    scores = match.find("td", "shsTotD shsSBScoreTD").contents[0]
+                except:
+                    import pdb; pdb.set_trace()
+                home_score, away_score = [int(e) for e in scores.strip().split("-")]
+                home = match.find("td", "shsNamD shsHomeTeam").find("a").contents[0]
+                away = match.find("td", "shsNumD shsAwayTeam").find("a").contents[0]
+                d = {
+                    "home": home,
+                    "away": away,
+                    "home_score": home_score,
+                    "away_score": away_score,
+                    "date": date,
+                    }
+                results.append(d)
+
+        return results
+
+
+    def main(self):
+        self.process_date(self.TEST_DATE)
+        
+
+    
+def create_games(date, competition, create=True):
+    from soccer.lineups.models import Game, Team
+    css = CNNSIScoreboardScraper()
+    results = css.process_date(date, competition)
+    for result in results:
+
+        try:
+            home_team = Team.objects.get_team(result['home'])
+        except:
+            print result['home']
+
+        try:
+            away_team = Team.objects.get_team(result['away'])
+        except:
+            print result['away']
+
+        if create:
+            Game.objects.create(
+                date=date,
+                home_team=home_team,
+                away_team=away_team,
+                home_score=result['home_score'],
+                away_score=result['away_score'],
+                )
+
+
+def create_span(start, end, competition, create=True):
+    while start < end:
+        create_games(start, competition, create)
+        start += datetime.timedelta(days=1)
+
+
+def do_year(year, competition):
+    start = datetime.date(year, 1, 1)
+    end = datetime.date(year + 1, 1, 1)
+    create_span(start, end, competition)
+        
+
+    
+
 
 
 class CNNSIPlayerScraper(AbstractPlayerScraper):
