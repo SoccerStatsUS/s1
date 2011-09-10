@@ -8,9 +8,13 @@ from soccer.lineups.models import Game
 def index(request):
     news = Entry.objects.order_by("-pub_date")[:5]
     games = Game.objects.order_by("-date")[:10]
+    ctx = {
+        "news": news,
+        "games": games,
+        }
 
     return render_to_response("index.html",
-                              {"news": news},
+                              ctx,
                               context_instance=RequestContext(request)
                               ) 
 
