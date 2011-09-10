@@ -3,6 +3,13 @@
 
 mapping = {}
 
+NASL_MAPPING = {
+    "Carolina RailHawks": 'Carolina RailHawks FC',
+    "Carolina Railhawks": 'Carolina RailHawks FC',
+    "Fort Lauderdale Strikers": 'Fort Lauderdale Strikers (2011)',
+}
+
+
 MLS_MAPPING = {
     "FC Dallas": "Football Club Dallas",
     "Dallas Burn": "Football Club Dallas",
@@ -181,6 +188,7 @@ CNNSI_ENGLAND_MAPPING = {
     }
 
 mapping.update(MLS_MAPPING)
+mapping.update(NASL_MAPPING)
 
 mapping.update(CNNSI_ENGLAND_MAPPING)
 mapping.update(CNNSI_GERMANY_MAPPING)

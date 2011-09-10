@@ -4,7 +4,7 @@
 
 <ul>
 {% for game in games %}
-<li>{{ game }}: {{ game.home_score }} - {{ game.away_score }}</li>
+<li><a href="{% url game_detail game.id %}">{{ game }}: {{ game.home_score }} - {{ game.away_score }}</a></li>
 {% endfor %}
 </ul>
 

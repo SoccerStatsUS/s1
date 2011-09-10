@@ -24,8 +24,8 @@ def year_schedule(request, year):
                               context_instance=RequestContext(request))
 
 
-def game_detail(request, id):
-    game = get_object_or_404(Game, id=id)
+def game_detail(request, game_id):
+    game = get_object_or_404(Game, id=game_id)
     context = {
         'game': game,
         'goals': game.goals.all(),
