@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/local/bin/env python
+# -*- coding: utf-8 -*-
 
 from BeautifulSoup import BeautifulSoup
 import datetime
@@ -12,25 +13,34 @@ from abstract import AbstractPlayerScraper
 GAME_URL = "http://sports.sportsillustrated.cnn.com/mls/boxscore.asp?gamecode=2010082103&show=pstats&ref="
 
 
-import datetime
 # All we want to do is get the score of a game.
 class CNNSIScoreboardScraper(object):
-
-    COMPETITION_URLS = {
-        "Major League Soccer": "http://sports.sportsillustrated.cnn.com/mls/scoreboard_daily.asp",
-        "Bundesliga": "http://sports.sportsillustrated.cnn.com/bund/scoreboard_daily.asp",
-        }
 
     TEST_DATE = datetime.date(2011,8,27)
 
     def __init__(self):
         pass
 
+    def make_url(self, competition, date):
+        base = "http://sports.sportsillustrated.cnn.com/%s/scoreboard_daily.asp?gameday=%s"
+        url_map = {
+            "Major League Soccer": 'mls',
+            "Bundesliga": 'bund',
+            "Premier League": 'epl',
+            "Serie A": 'seri',
+            "Eredivisie": 'holl',
+            "Scotland": 'scot',
+            "Mexico": 'fmf',
+            "Spain": 'liga',
+            }
+           
+        return base % (url_map[competition], self.format_date(date))
+
     def format_date(self, date):
         return date.strftime("%Y%m%d")
 
     def get_date_page(self, date, competition):
-        url = "%s?gameday=%s" % (self.COMPETITION_URLS[competition], self.format_date(date))
+        url = self.make_url(competition, date)
         html = urllib2.urlopen(url).read()
         return BeautifulSoup(html)
 
@@ -75,13 +85,13 @@ def create_games(date, competition, create=True):
         try:
             home_team = Team.objects.get_team(result['home'])
         except:
-            import pdb; pdb.set_trace()
+            #import pdb; pdb.set_trace()
             print result['home']
 
         try:
             away_team = Team.objects.get_team(result['away'])
         except:
-            import pdb; pdb.set_trace()
+            #import pdb; pdb.set_trace()
             print result['away']
 
         if create:
@@ -104,6 +114,12 @@ def do_year(year, competition):
     start = datetime.date(year, 1, 1)
     end = datetime.date(year + 1, 1, 1)
     create_span(start, end, competition)
+
+
+def until_now(competition, create):
+    start = datetime.date(2011,8,1)
+    end = datetime.date.today() - datetime.timedelta(days=1)
+    create_span(start, end, competition, create)
         
 
     
