@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ul>
+{% for game in games %}
+<li>{{ game }}: {{ game.home_score }} - {{ game.away_score }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
