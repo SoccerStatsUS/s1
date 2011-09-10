@@ -75,11 +75,13 @@ def create_games(date, competition, create=True):
         try:
             home_team = Team.objects.get_team(result['home'])
         except:
+            import pdb; pdb.set_trace()
             print result['home']
 
         try:
             away_team = Team.objects.get_team(result['away'])
         except:
+            import pdb; pdb.set_trace()
             print result['away']
 
         if create:
