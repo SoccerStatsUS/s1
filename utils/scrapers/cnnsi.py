@@ -24,11 +24,11 @@ class CNNSIScoreboardScraper(object):
     def make_url(self, competition, date):
         base = "http://sports.sportsillustrated.cnn.com/%s/scoreboard_daily.asp?gameday=%s"
         url_map = {
-            "Major League Soccer": 'mls',
-            "Bundesliga": 'bund',
-            "Premier League": 'epl',
-            "Serie A": 'seri',
-            "Eredivisie": 'holl',
+            "USA": 'mls',
+            "Germany": 'bund',
+            "England": 'epl',
+            "Italy": 'seri',
+            "Holland": 'holl',
             "Scotland": 'scot',
             "Mexico": 'fmf',
             "Spain": 'liga',
@@ -48,8 +48,9 @@ class CNNSIScoreboardScraper(object):
     def process_date(self, date, competition):
         soup = self.get_date_page(date, competition)
         matches = [e.parent for e in soup.findAll("tr", "shsMatchDayRow")]
+        box_scores = soup.findAll("tr", "shsOfficialBox")
         results = []
-        for match in matches:
+        for match, box_score in zip(matches, box_scores):
             # Need to handle bad dates anyway...
             if date < datetime.date.today():
                 try:
@@ -59,12 +60,17 @@ class CNNSIScoreboardScraper(object):
                 home_score, away_score = [int(e) for e in scores.strip().split("-")]
                 home = match.find("td", "shsNamD shsHomeTeam").find("a").contents[0]
                 away = match.find("td", "shsNumD shsAwayTeam").find("a").contents[0]
+
+                url = box_score.previousSibling.find("a")['href']
+
                 d = {
                     "home": home,
                     "away": away,
                     "home_score": home_score,
                     "away_score": away_score,
                     "date": date,
+                    "competition": competition,
+                    'url': url,
                     }
                 results.append(d)
 
@@ -101,7 +107,16 @@ def create_games(date, competition, create=True):
                 away_team=away_team,
                 home_score=result['home_score'],
                 away_score=result['away_score'],
+                competition=result['competition'],
                 )
+
+
+def xdaterange(start, end):
+    # Does not include end.
+    d = start
+    while d < end:
+        yield d
+        d += datetime.timedelta(days=1)
 
 
 def create_span(start, end, competition, create=True):
@@ -120,6 +135,29 @@ def until_now(competition, create):
     start = datetime.date(2011,8,1)
     end = datetime.date.today() - datetime.timedelta(days=1)
     create_span(start, end, competition, create)
+
+def until_now_all(create=True):
+    start = datetime.date(2011,8,1)
+    end = datetime.date.today() - datetime.timedelta(days=1)
+    for date in xdaterange(start, end):
+        try:
+            create_all(date, create)
+        except:
+            print date
+    
+
+def create_all(date, create=True):
+    leagues = [
+        "Germany",
+        "England",
+        "Italy",
+        "Holland",
+        "Scotland",
+        "Mexico",
+        "Spain",
+        ]
+    for league in leagues:
+        create_games(date, league, create)
         
 
     
