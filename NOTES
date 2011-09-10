@@ -1,0 +1,2 @@
+
+Time to migrate to postgresql. SQLite doesn't support unique constraints.
