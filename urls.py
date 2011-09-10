@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
                        url(r'^$', include('soccer.main.urls')),
                        url(r'^about/$', 'soccer.main.views.about', name='about'),
+                       url(r'^api/', include('soccer.api.urls')),
                        url(r'^p/', include('soccer.players.urls')),
                        url(r'^drafts/', include('soccer.drafts.urls')),
                        url(r'^news/', include('soccer.feeds.urls')),
@@ -17,7 +18,6 @@ urlpatterns = patterns('',
                        url(r'^schedules/', include('soccer.lineups.urls')),
                        url(r'^stats/', include('soccer.stats.urls')),
                        url(r'^teams/', include('soccer.teams.urls')),
-                       url(r'^scores/', include('soccer.scores.urls')),                       
 
                        # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
                        # to INSTALLED_APPS to enable admin documentation:

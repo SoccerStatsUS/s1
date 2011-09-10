@@ -2,6 +2,7 @@
 
 from BeautifulSoup import BeautifulSoup, HTMLParseError
 import cPickle
+import datetime
 import logging
 import os
 import time
@@ -18,6 +19,12 @@ to_file = logging.FileHandler(
 to_file.setFormatter(logging.Formatter(LOG_FORMAT))
 
 logger.addHandler(to_file)
+
+
+class AbstractGameScraper(object):
+
+    def __init__(self):
+        pass
 
 
 class AbstractPlayerScraper(object):
@@ -42,6 +49,8 @@ class AbstractPlayerScraper(object):
     def max_path(self):
         return os.path.join(self.DATA_DIR, '%s.%s' % (self.FILE_PREFIX, 'max'))
 
+
+    # Why not just use a python lock object?
     def lock_path(self, type):
         return os.path.join(self.DATA_DIR, '%s.%s.%s' % (self.FILE_PREFIX, type, 'lock'))
 
@@ -174,3 +183,76 @@ class AbstractPlayerScraper(object):
         return BeautifulSoup(nhtml)
         
 
+
+# All we want to do is get the score of a game.
+class CNNSIScoreboardScraper(object):
+
+    SCOREBOARD_URL = "http://sports.sportsillustrated.cnn.com/mls/scoreboard_daily.asp"
+    TEST_DATE = datetime.date(2011,8,27)
+
+    def __init__(self):
+        pass
+
+    def format_date(self, date):
+        return date.strftime("%Y%m%d")
+
+    def get_date_page(self, date):
+        url = "%s?gameday=%s" % (self.SCOREBOARD_URL, self.format_date(date))
+        html = urllib2.urlopen(url).read()
+        return BeautifulSoup(html)
+
+
+
+    def process_date(self, date):
+        soup = self.get_date_page(date)
+        matches = [e.parent for e in soup.findAll("tr", "shsMatchDayRow")]
+        results = []
+        for match in matches:
+            # Need to handle bad dates anyway...
+            if date < datetime.date.today():
+                try:
+                    scores = match.find("td", "shsTotD shsSBScoreTD").contents[0]
+                except:
+                    import pdb; pdb.set_trace()
+                home_score, away_score = [int(e) for e in scores.strip().split("-")]
+                home = match.find("td", "shsNamD shsHomeTeam").find("a").contents[0]
+                away = match.find("td", "shsNumD shsAwayTeam").find("a").contents[0]
+                d = {
+                    "home": home,
+                    "away": away,
+                    "home_score": home_score,
+                    "away_score": away_score,
+                    "date": date,
+                    }
+                results.append(d)
+
+        return results
+
+
+    def main(self):
+        self.process_date(self.TEST_DATE)
+        
+
+    
+def create_games(date):
+    from soccer.lineups.models import Game, Team
+    css = CNNSIScoreboardScraper()
+    results = css.process_date(date)
+    for result in results:
+        try:
+            home_team = Team.objects.get_team(result['home'])
+            away_team = Team.objects.get_team(result['away'])
+        except:
+            import pdb; pdb.set_trace()
+
+        Game.objects.create(
+            date=date,
+            home_team=home_team,
+            away_team=away_team,
+            home_score=result['home_score'],
+            away_score=result['away_score'],
+            )
+        
+
+    
+    

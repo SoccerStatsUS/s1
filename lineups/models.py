@@ -8,7 +8,7 @@ from soccer.teams.models import Team
 
 class Game(models.Model):
     date = models.DateField()
-    neutral = models.BooleanField()
+    neutral = models.BooleanField(default=False)
     
     home_team = models.ForeignKey(Team, related_name="home_games")
     home_score = models.IntegerField()
@@ -16,9 +16,9 @@ class Game(models.Model):
     away_team = models.ForeignKey(Team, related_name="away_games")
     away_score = models.IntegerField()
 
-
     class Meta:
         ordering = ('date',)
+        unique_together = [('home_team', 'date'), ('away_team', 'date')]
 
 
     def score(self):

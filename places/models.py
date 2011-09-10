@@ -25,10 +25,9 @@ class State(models.Model):
 
 class City(models.Model):
     """A city somewhere in the world."""
-    # Currently unused until I implement GeoDjango support.
 
     slug = models.CharField(max_length=50, unique=True, null=False)
-    city = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     state = models.CharField(max_length=50, blank=True)
     country = models.CharField(max_length=50, default='U.S.A.')
     #location = models.PointField(null=True, blank=True)
