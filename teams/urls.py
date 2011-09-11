@@ -8,8 +8,11 @@ urlpatterns = patterns('soccer.teams.views',
                            'schedule',
                            name='schedule'),
 
-
-                       url(r'^(?P<slug>\w+)/$',
+                       
+                       # Fixme
+                       # This is obviously wrong.
+                       # We want a slug match here.
+                       url(r'^(?P<slug>.+)/$',
                            'team_detail',
                            name='team_detail'),
 
