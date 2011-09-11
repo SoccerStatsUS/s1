@@ -9,3 +9,26 @@ Some of the main problems with this site:
 3. Need much better facilities for managing duplicate (players/leagues/teams/games)
 
 5. Maybe an alias model that maps a name to a generic foreign key? Unique on the name/gfk combination.
+
+
+So the unifying idea behind how to keep stats on the site:
+
+Every game is part of several competitions. We save stats for each competition into a stats object. That should be relatively standard. 
+
+So a regular season MLS 2011 game would be part of:
+MLS regular season 2011, regularseasoncareer, everythingcareer
+
+A mls playoff game would be part of:
+MLS playofss 2011, playoffscareer, everythingcareer
+
+A friendly would be part of:
+friendly, (that's it)
+
+# This would solve the long-lasting MLS open cup / regular season problem.
+
+
+# A competition is simply a name.
+# It could have some other information, like country, or format (round-robin, league)
+# A start and end. (could be figured programatically)
+# 
+

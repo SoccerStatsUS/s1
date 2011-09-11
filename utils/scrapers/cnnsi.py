@@ -165,8 +165,7 @@ class CNNSIEventScraper(object):
         pass
 
     def get_events(self, url):
-        data = urllib2.urlopen(url).read()
-        soup = BeautifulSoup(data)
+        soup = Soup(urllib2.urlopen(url).read())
         events_div = soup.find("div", "shsEventsContainer")
         events = events_div.findAll("tr",  {'class': ["shsRow1Row", 'shsRow0Row']})
 
@@ -187,6 +186,41 @@ class CNNSIEventScraper(object):
 
     def main(self):
         return self.parse('http://sports.sportsillustrated.cnn.com/epl/boxscore.asp?gamecode=2011091010021&show=events&ref=')
+
+
+def scrape_player_stats(url='http://sports.sportsillustrated.cnn.com/mls/boxscore.asp?gamecode=2011091006&show=pstats&ref='):
+    soup = BeautifulSoup(urllib2.urlopen(url).read())
+    # Missing one team's stats.
+    player_stats = soup.find('div', {'id': "shsIFBBoxPlayerStats1"})
+    rows = player_stats.findAll("tr", {"class": ['shsRow0Row', 'shsRow1Row']})
+    
+    def process_row(row):
+        l = [get_contents(e) for e in row]
+        l = [e for e in l if e] # Clean out empty lines.
+        number, name, minutes, goals, yellows, reds, allowed, saves = l
+        return {
+            'number': number,
+            'name': name,
+            'minutes': minutes,
+            'goals': goals,
+            'yellows': yellows,
+            'reds': reds,
+            'allowed': allowed,
+            'saves': saves,
+            }
+
+    stats =  [process_row(row) for row in rows]
+
+    goals_table = soup.find("table", 'shsGoalScorers')
+    goal_anchors = [e.find("a") for e in goals_table.findAll("td", "shsTotD")]
+    goal_anchors = [e for e in goal_anchors if e]
+    goals = [(e['href'], e.nextSibling.strip()) for e in goal_anchors]
+
+    return {
+        'stats': stats,
+        'goals': goals,
+        }
+
 
 def get_events(url):
     cs = CNNSIEventScraper()
