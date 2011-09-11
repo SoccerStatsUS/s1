@@ -46,7 +46,7 @@ def seasons_with_stats_by_team():
 
 class DefunctTeamManager(models.Manager):
     def get_query_set(self):
-        return super(DefunctTeamManager, self).get_query_set().filter(defunct=True)
+        return super(DefunctTeamManager, self).get_query_set().filter(defunct=True, real=True)
 
 class RealTeamManager(models.Manager):
     def get_query_set(self):
