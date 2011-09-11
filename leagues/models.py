@@ -1,6 +1,7 @@
 from django.db import models
 
 from soccer.international.models import Confederation
+from soccer.places.models import Country
 
 
 class Competition(models.Model):
@@ -40,6 +41,7 @@ class League(models.Model):
     # rather, it should participate in a league in a particular year.
     name = models.CharField(max_length=50)
     confederation = models.ForeignKey(Confederation, related_name='leagues')
+    country = models.ForeignKey(Country)
 
     def __unicode__(self):
         return self.name
