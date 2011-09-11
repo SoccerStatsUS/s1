@@ -55,6 +55,7 @@ class Salary(models.Model):
 
     class Meta:
         ordering = ('-year', 'last_name', 'first_name')
+        verbose_name_plural = 'salaries'
 
     @property
     def full_name(self):
