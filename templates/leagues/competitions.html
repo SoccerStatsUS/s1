@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ul>
+{% for competition in competitions %}
+<li><a href="{% url competition_detail competition.id %}">{{ competition }}</a></li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}
