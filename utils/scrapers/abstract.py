@@ -21,6 +21,17 @@ to_file.setFormatter(logging.Formatter(LOG_FORMAT))
 logger.addHandler(to_file)
 
 
+def get_contents(l):
+    if not hasattr(l, 'contents'):
+        s = l
+    else:
+        s = ""
+        for e in l.contents:
+            s += get_contents(e)
+    return s.strip()
+
+
+
 class AbstractGameScraper(object):
 
     def __init__(self):

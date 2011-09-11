@@ -4,17 +4,11 @@ import urllib2
 
 from django.template.defaultfilters import slugify
 
+from abstract import get_contents
 
 DEFAULT_USER_AGENT = "Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.249.22 Safari/532.5"
 
 
-# Improve this!
-# Don't just use contents[0]
-def get_contents(el):
-    if hasattr(el, 'contents'):
-        return get_contents(el.contents[0])
-    else:
-        return el
 
 def scrape_team(name):
     wiki_name = name.replace(" ", "_")

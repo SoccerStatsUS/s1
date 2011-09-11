@@ -8,15 +8,13 @@ import re
 import sys
 import urllib2
 
-from abstract import AbstractPlayerScraper
+from abstract import AbstractPlayerScraper, get_contents
 
 GAME_URL = "http://sports.sportsillustrated.cnn.com/mls/boxscore.asp?gamecode=2010082103&show=pstats&ref="
 
 
 # All we want to do is get the score of a game.
 class CNNSIScoreboardScraper(object):
-
-    TEST_DATE = datetime.date(2011,8,27)
 
     def __init__(self):
         pass
@@ -77,16 +75,14 @@ class CNNSIScoreboardScraper(object):
         return results
 
 
-    def main(self):
-        self.process_date(self.TEST_DATE)
-        
-
     
 def create_games(date, competition, create=True):
     from soccer.lineups.models import Game, Team
     css = CNNSIScoreboardScraper()
     results = css.process_date(date, competition)
     for result in results:
+
+        import pdb; pdb.set_trace()
 
         try:
             home_team = Team.objects.get_team(result['home'])
@@ -109,6 +105,7 @@ def create_games(date, competition, create=True):
                 away_score=result['away_score'],
                 competition=result['competition'],
                 )
+            
 
 
 def xdaterange(start, end):
@@ -160,7 +157,40 @@ def create_all(date, create=True):
         create_games(date, league, create)
         
 
-    
+
+
+class CNNSIEventScraper(object):
+
+    def __init__(self):
+        pass
+
+    def get_events(self, url):
+        data = urllib2.urlopen(url).read()
+        soup = BeautifulSoup(data)
+        events_div = soup.find("div", "shsEventsContainer")
+        events = events_div.findAll("tr",  {'class': ["shsRow1Row", 'shsRow0Row']})
+
+        l = []
+        for event in events:
+            r = [get_contents(e) for e in event]
+            minute = int(r[1].replace("'", ''))
+            description = r[3]
+            if "\r\n" in description:
+                event, actor = [e.strip() for e in description.split("\r\n") ]
+            else:
+                event = description.strip()
+                actor = ''
+            l.append((minute, event, actor))
+
+        return l
+
+
+    def main(self):
+        return self.parse('http://sports.sportsillustrated.cnn.com/epl/boxscore.asp?gamecode=2011091010021&show=events&ref=')
+
+def get_events(url):
+    cs = CNNSIEventScraper()
+    return cs.get_events(url)
 
 
 

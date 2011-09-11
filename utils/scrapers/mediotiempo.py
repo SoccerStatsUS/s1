@@ -47,15 +47,6 @@ def h_to_u(s):
 
 
 
-def get_contents(node):
-    s = node
-    while hasattr(s, 'contents'):
-        s = s.contents[0]
-    s = s.replace("&nbsp;", " ")
-    return s.strip()
-    
-
-
 def fetch_data(team, tournament, league=1):
     d = {
         "id_equipo": team,

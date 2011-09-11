@@ -6,15 +6,7 @@ from BeautifulSoup import BeautifulSoup
 from soccer.lineups.models import Game
 from soccer.teams.models import Team
 
-
-# Improve this!
-# Don't just use contents[0]
-def get_contents(el):
-    if hasattr(el, 'contents') and el.contents:
-        return get_contents(el.contents[0])
-    else:
-        return el
-
+from abstract import get_contents
 
 def scrape_scores():
     url = 'http://nasl.com/index.php?id=12'
