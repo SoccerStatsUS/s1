@@ -1,4 +1,6 @@
 
+# Start out with World Cup and Champions League! and EPL! and Italy!
+
 Time to migrate to postgresql. SQLite doesn't support unique constraints.
 Also, this will allow geoDjango support!
 
