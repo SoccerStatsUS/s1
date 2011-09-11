@@ -54,6 +54,7 @@ class RealTeamManager(models.Manager):
 
 
 class TeamManager(models.Manager):
+
     def get_team(self, name):
         from soccer.teams.aliases import mapping
         if name in mapping:
@@ -61,14 +62,26 @@ class TeamManager(models.Manager):
         return Team.objects.get(name=name)
 
 
+    def get_duplicate_short_names(self):
+        """Find teams with duplicate short names."""
+        s = set()
+        d = set()
+        for team in self.get_query_set():
+            if team.short_name in s:
+                d.add(team.short_name)
+            s.add(team.short_name)
+        return self.get_query_set().filter(short_name__in=d)
+            
+
+
 class Team(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     # Let's get rid of short name! It's really just another alias.
     # No way, it's useful when you want to display a better name.
     # Let's just be clear that it's very optional.
     short_name = models.CharField(max_length=200)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     city = models.CharField(max_length=100)
     
     # League isn't really a property of a team...
@@ -78,7 +91,7 @@ class Team(models.Model):
     defunct = models.BooleanField(default=False)
     real = models.BooleanField(default=True)
 
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
 
     objects = TeamManager()
     defuncts = DefunctTeamManager()
