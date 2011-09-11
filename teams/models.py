@@ -44,6 +44,15 @@ def seasons_with_stats_by_team():
     return d
 
 
+class DefunctTeamManager(models.Manager):
+    def get_query_set(self):
+        return super(DefunctTeamManager, self).get_query_set().filter(defunct=True)
+
+class RealTeamManager(models.Manager):
+    def get_query_set(self):
+        return super(RealTeamManager, self).get_query_set().filter(real=True)
+
+
 class TeamManager(models.Manager):
     def get_team(self, name):
         from soccer.teams.aliases import mapping
@@ -60,15 +69,19 @@ class Team(models.Model):
     # Let's just be clear that it's very optional.
     short_name = models.CharField(max_length=200)
     slug = models.SlugField()
-    nickname = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100)
     
     # League isn't really a property of a team...
     league = models.ForeignKey(League)
     founded = models.IntegerField(null=True, blank=True)
+
     defunct = models.BooleanField(default=False)
+    real = models.BooleanField(default=True)
 
     objects = TeamManager()
+    defuncts = DefunctTeamManager()
+    reals = RealTeamManager()
+
 
     class Meta:
         ordering = ('short_name',)

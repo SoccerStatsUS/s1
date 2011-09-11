@@ -2,9 +2,9 @@ from soccer.teams.models import Team, Stadium
 from django.contrib import admin
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ("short_name", "city", "founded", "defunct")
+    list_display = ("short_name", "city", "founded", "defunct", "real")
     search_fields = ("name", "nickname", "city", )
-    list_filter = ("league__confederation", "league", "defunct", )
+    list_filter = ("defunct", "real", "league__confederation", "league")
 
 
 class StadiumAdmin(admin.ModelAdmin):

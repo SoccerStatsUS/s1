@@ -11,9 +11,20 @@ from soccer.stats.models import SeasonStat
 def index(request):
     """A list of all teams in the database."""
 
-    teams = Team.objects.order_by("short_name")
+    teams = Team.reals.order_by("short_name")
+    ctx = {"teams": teams}
     return render_to_response("teams/index.html",
-                              {"teams": teams},
+                              ctx,
+                              context_instance=RequestContext(request)
+                              )
+
+def defunct(request):
+    """A list of all teams in the database."""
+
+    teams = Team.defuncts.order_by("short_name")
+    ctx = {"teams": teams}
+    return render_to_response("teams/index.html",
+                              ctx,
                               context_instance=RequestContext(request)
                               )
 

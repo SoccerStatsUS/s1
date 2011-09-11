@@ -1,10 +1,8 @@
 from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('soccer.teams.views', 
-                       url(r'^$',
-                           'index',
-                           name='teams_index'),
-
+                       url(r'^$', 'index', name='teams_index'),
+                       url(r'^defunct/$', 'defunct', name='defunct_index'),
 
                        url(r'^schedule/(?P<id>\d+)/(?P<year>\d+)/$',
                            'schedule',
