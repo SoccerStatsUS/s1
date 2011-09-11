@@ -23,6 +23,12 @@ class Competition(models.Model):
     # Do we need a separate season? 2011 or 2010-2011
     # season = models.CharField(max_length=255) 
 
+    # A competition is also made up of a number of games.
+    # A competition usually has more than one game
+    # (but not always, e.g. Charity Shield),
+    # but a game is usually (but not always) only part
+    # of one competition.
+
 
 
 class League(models.Model):
