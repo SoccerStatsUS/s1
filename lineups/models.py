@@ -50,6 +50,23 @@ class GameGoal(models.Model):
     def __unicode__(self):
         return "%s: %s" % (self.game, self.minute)
 
+class GameEvent(models.Model):
+    """
+    Potentially anything that happens during a game.
+    """
+    # This would be something like
+    # shot, Aaron Ramsey
+    # Foul, Arteta fouled by Ashley Williams
+
+    game = models.ForeignKey(Game)
+    minute = models.IntegerField()
+
+    description = models.CharField(max_length=255)
+    actor = models.CharField(max_length=255)
+    receiver =  models.CharField(max_length=255)
+
+
+
 class GamePlayed(models.Model):
     
     game = models.ForeignKey(Game)
