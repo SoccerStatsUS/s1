@@ -15,11 +15,11 @@ So the unifying idea behind how to keep stats on the site:
 
 Every game is part of several competitions. We save stats for each competition into a stats object. That should be relatively standard. 
 
-So a regular season MLS 2011 game would be part of:
-MLS regular season 2011, regularseasoncareer, everythingcareer
+So a FC Dallas regular season  2011 game would be part of:
+MLS regular season 2011, regularseasoncareer, everythingcareer, FC Dallas regular season 2011, FC Dallas regular season
 
-A mls playoff game would be part of:
-MLS playofss 2011, playoffscareer, everythingcareer
+An FC Dallas playoff game would be part of:
+MLS playofss 2011, playoffscareer, everythingcareer, FC Dallas playoffs 2011, FC Dalals playoffs
 
 A friendly would be part of:
 friendly, (that's it)
