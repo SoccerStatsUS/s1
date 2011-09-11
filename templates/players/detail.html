@@ -42,7 +42,7 @@
 <tbody>
 {% for season in seasons %}
 <tr>
-  <td><a href="{% url team_by_id season.team.id %}">{{ season.team }}</a></td>
+  <td><a href="{% url team_detail season.team.slug %}">{{ season.team }}</a></td>
   <td><a href="{% url year_stats season.year %}">{{ season.year }}</a></td>
   <td>{{ season.games_played }}</td>
   <td>{{ season.games_started }}</td>

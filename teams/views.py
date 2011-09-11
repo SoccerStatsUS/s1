@@ -1,6 +1,6 @@
 from django.core.cache import cache
 from django.db.models import Q
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
 from soccer.lineups.models import Game
@@ -56,18 +56,12 @@ def team_and_year(request, id, year):
                               )
                               
 
-# Probably shouldn't be using both of these.  
-# Should probably just be using slugs.
 
-def team_by_slug(request, slug):
-    return team_view(request, Team.objects.get(slug=slug))
-
-def team_by_id(request, id):
-    return team_view(request, Team.objects.get(id=id))
-
-def team_view(request, team):
+def team_detail(request, slug):
+    team = get_object_or_404(Team, slug=slug)
     years = team.years_with_stats()
 
+    # Whoa whoa whoa what is this stuff?
     minutes = {}
     games = {}
     goals = {}

@@ -44,7 +44,7 @@
 {% for stat in stats %}
 <tr>
   <td><a href="{% url person_detail_id stat.player.id %}">{{ stat.player }}</a></td>
-  <td><a href="{% url team_by_id stat.team.id %}">{{ stat.team }}</a></td>
+  <td><a href="{% url team_detail stat.team.slug %}">{{ stat.team }}</a></td>
   <td><a href="{% url year_stats stat.year %}">{{ stat.year }}</a></td>
   <td>{{ stat.games_played }}</td>
   <td>{{ stat.games_started }}</td>

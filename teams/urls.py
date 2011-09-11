@@ -9,13 +9,9 @@ urlpatterns = patterns('soccer.teams.views',
                            name='schedule'),
 
 
-                       url(r'^(?P<id>\d+)/$',
-                           'team_by_id',
-                           name='team_by_id'),
-
                        url(r'^(?P<slug>\w+)/$',
-                           'team_by_slug',
-                           name='team_by_slug'),
+                           'team_detail',
+                           name='team_detail'),
 
                        url(r'^(?P<id>\d+)/(?P<year>\d+)/$',
                            'team_and_year',
