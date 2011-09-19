@@ -96,6 +96,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'soccer.drafts',
     'soccer.feeds',
+    'soccer.games',
     'soccer.international',
     'soccer.leagues',
     'soccer.lineups',

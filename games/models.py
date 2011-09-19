@@ -15,10 +15,10 @@ class Game(models.Model):
     
     #neutral = models.BooleanField(default=False)
     
-    home_team = models.ForeignKey(Team, related_name="home_games")
+    home_team = models.ForeignKey(Team, related_name="home_games2")
     home_score = models.IntegerField()
 
-    away_team = models.ForeignKey(Team, related_name="away_games")
+    away_team = models.ForeignKey(Team, related_name="away_games2")
     away_score = models.IntegerField()
 
     # These should perhaps be foreign keys. Maybe one day.
