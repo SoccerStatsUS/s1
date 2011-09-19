@@ -1,6 +1,7 @@
 from soccer.places.models import Country
 from soccer.players.models import Person
 
+# What the heck is the point of this stuff?
 
 def p():
     u = Person.objects.filter(nationality=None).order_by("name")

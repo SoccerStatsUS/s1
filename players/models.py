@@ -6,7 +6,7 @@ from django.db.transaction import commit_on_success
 from soccer.places.models import Country
 from soccer.players.aliases import mapping
 from soccer.utils.bios import load_bios
-from soccer.utils import scrapers
+#from soccer.utils import scrapers
 
 
 class PersonManager(models.Manager):
@@ -126,6 +126,7 @@ class Person(models.Model):
 class GenericBioManager(models.Manager):
 
     def unloaded_players(self, source):
+        # Whoops, this won't work now.
         loaded_ids = set([e.source_id for e in GenericBio.objects.filter(source=source)])
         bios = scrapers.load_profiles(source)
 

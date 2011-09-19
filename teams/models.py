@@ -56,6 +56,9 @@ class RealTeamManager(models.Manager):
 class TeamManager(models.Manager):
 
     def get_team(self, name):
+        """
+        Given a random team name, find the actualy team.
+        """
         from soccer.teams.aliases import mapping
         if name in mapping:
             name = mapping[name]

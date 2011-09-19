@@ -1,8 +1,17 @@
 
-# Start out with World Cup and Champions League! and EPL! and Italy!
+#### Todo
+
+Create a team ranking system based on the scores!
+Soccermetrics!
+
+Need an aliases model.
+
+Start out with World Cup and Champions League! and EPL! and Italy!
 
 Time to migrate to postgresql. SQLite doesn't support unique constraints.
 Also, this will allow geoDjango support!
+
+#### Bugs
 
 Some of the main problems with this site:
 
@@ -12,6 +21,8 @@ Some of the main problems with this site:
 
 5. Maybe an alias model that maps a name to a generic foreign key? Unique on the name/gfk combination.
 
+
+#### Stats
 
 So the unifying idea behind how to keep stats on the site:
 
@@ -26,11 +37,12 @@ MLS playofss 2011, playoffscareer, everythingcareer, FC Dallas playoffs 2011, FC
 A friendly would be part of:
 friendly, (that's it)
 
-# This would solve the long-lasting MLS open cup / regular season problem.
+This would solve the long-lasting MLS open cup / regular season problem.
 
+#### Competitions 
 
 # A competition is simply a name.
 # It could have some other information, like country, or format (round-robin, league)
 # A start and end. (could be figured programatically)
-# 
+
 
