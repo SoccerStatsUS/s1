@@ -4,7 +4,15 @@ import datetime
 from soccer.games.models import Game
 from soccer.teams.models import Team
 
+import pymongo
 
+class ConsistencyException(Exception):
+    pass
+
+
+def check_team_names(d):
+    Team.objects.get_team_test(d['home_team'])
+    Team.objects.get_team_test(d['away_team'])
 
 def check_game(d):
     """
@@ -23,15 +31,14 @@ def check_game(d):
     # Game already exists. Need to check that things match
     if g:
         if gx.location != '' and d.get('location') != gx.location:
-            raise # ConsistencyError
+            raise ConsistencyException
 
         if gx.competition != '' and d.get('competition') != gx.competition:
-            raise # ConsistencyError
+            raise ConsistencyException
 
         if gx.notes != '' and d.get('notes') != gx.notes:
-            raise # ConsistencyError
+            raise ConsistencyException
             
-
 
 def insert_game(d):
     """
@@ -59,23 +66,52 @@ def insert_game(d):
         gx.save()
 
 
-            
-
-    
-
 def process_mls_game(d):
+    """
+    Convert to the right types, parse text if necessary.
+    """
 
     # We are not sure what the competition of any of these games is.
-
     home_team = Team.objects.get_team(d['home_team'])
     away_team = Team.objects.get_team(d['away_team'])
-
     dt = datetime.datetime.strptime(d['date'].strip(), '%A, %B %d, %Y')
-                            d
+
+    return {
+        'date': dt,
+        'home_team': home_team,
+        'home_score': int(d['home_score']),
+        'away_team': away_team,
+        'away_score': int(d['away_score']),
+        'location': d['location'],
+        'competition': d.get('competition', ''),
+        'notes': d.get('notes', ''),
+        }
+
+def get_rows(collection):
+    return [row for row in collection.find().sort('date', pymongo.ASCENDING)]
 
 
-    nd = {
-        '
-        
-        
+def load_mlssoccer():
+    """
+    Load the mlssoccer scores.
+    """
+    connection = pymongo.Connection()
+    soccer_db = connection.soccer
 
+    # Make sure teams are working.
+    rows = get_rows(soccer_db.mlssoccer_mls_games)
+    for e in rows:
+        check_team_names(e)
+
+    return
+
+    # Get the necessary objects and coerce them to correct types.
+    processed_rows = [process_mls_game(e) for e in rows]
+
+    # make sure there is no conflicting data.
+    for e in processed_rows:
+        check_game(e)
+
+    # insert games carefully.
+    for e in processed_rows:
+        insert_game(e)

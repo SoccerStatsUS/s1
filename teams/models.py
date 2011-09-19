@@ -65,6 +65,16 @@ class TeamManager(models.Manager):
         return Team.objects.get(name=name)
 
 
+    def get_team_test(self, name, default=None):
+        # method to test whether or not a team is possible.
+        try:
+            return Team.objects.get_team(name)
+        except Team.DoesNotExist:
+            print "Name: %s" % name
+            return default
+        
+
+
     def get_duplicate_short_names(self):
         """Find teams with duplicate short names."""
         s = set()

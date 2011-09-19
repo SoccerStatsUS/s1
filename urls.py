@@ -16,7 +16,7 @@ urlpatterns = patterns('',
                        url(r'^leagues/', include('soccer.leagues.urls')),
                        url(r'^salaries/', include('soccer.salaries.urls')),
                        url(r'^schedules/', include('soccer.lineups.urls')),
-                       url(r'^scores/', include('soccer.lineups.scoreurls')),
+                       url(r'^scores/', include('soccer.games.urls')),
                        url(r'^stats/', include('soccer.stats.urls')),
                        url(r'^teams/', include('soccer.teams.urls')),
 
