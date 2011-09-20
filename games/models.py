@@ -26,6 +26,13 @@ class Game(models.Model):
     competition = models.CharField(max_length=255)
     notes = models.TextField()
 
+    # Should probably have an attendance field.
+    # Additionally, a referee field.
+
+    # Game should probably also have a competitions field that's
+    # a many-to-many field used for recording stats.
+    # Competitions like "U.S. Open Cup" or "MLS Regular Season"
+
     class Meta:
         ordering = ('date',)
         unique_together = [('home_team', 'date'), ('away_team', 'date')]

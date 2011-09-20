@@ -3,16 +3,17 @@ from django.db import models
 from soccer.international.models import Confederation
 from soccer.places.models import Country
 
-
+# Competition needs a slug.
 class Competition(models.Model):
     """
     A competition is something like:
-    U.S. Open Cup 1998
-    La Liga 2011-2012
-    Major League Soccer all-time
+    U.S. Open Cup
+    La Liga
+    Major League Soccer
     """
     # Or something like that.
     # Not quite sure yet.
+    
 
     name = models.CharField(max_length=255)
 

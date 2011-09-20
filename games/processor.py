@@ -67,8 +67,20 @@ def insert_game(d):
 
         gx.save()
 
-
 def process_mls_game(d):
+    f = lambda d: datetime.datetime.strptime(d['date'].strip(), '%A, %B %d, %Y')
+    return process_game(d, f)
+
+
+def process_nasl_game(d):
+    f = lambda d: datetime.datetime.strptime(d['date'].strip(), '%A, %B %d, %Y')
+    month, day = re.search("(?P<date>\d{1,2}/\d{2})", date).groups()[0].split("/")
+    dt = datetime.datetime(2011, int(month), int(day))
+
+    return process_game(d, f)
+
+
+def process_game(d, process_date_func):
     """
     Convert to the right types, parse text if necessary.
     """
@@ -76,7 +88,7 @@ def process_mls_game(d):
     # We are not sure what the competition of any of these games is.
     home_team = Team.objects.get_team(d['home_team'])
     away_team = Team.objects.get_team(d['away_team'])
-    dt = datetime.datetime.strptime(d['date'].strip(), '%A, %B %d, %Y')
+    dt = process_date_func(d)
 
     try:
         home_score = int(d['home_score'])
@@ -102,20 +114,13 @@ def get_rows(collection):
     return [row for row in collection.find().sort('date', pymongo.ASCENDING)]
 
 
-def load_mlssoccer():
-    """
-    Load the mlssoccer scores.
-    """
-    connection = pymongo.Connection()
-    soccer_db = connection.soccer
+def load_rows(rows):
 
-    # Make sure teams are working.
-    rows = get_rows(soccer_db.mlssoccer_mls_games)
     for e in rows:
         check_team_names(e)
 
     # Get the necessary objects and coerce them to correct types.
-    processed_rows = [process_mls_game(e) for e in rows]
+    processed_rows = [process_game(e) for e in rows]
     processed_rows = [e for e in processed_rows if e]
 
     # make sure there is no conflicting data.
@@ -125,3 +130,28 @@ def load_mlssoccer():
     # insert games carefully.
     for e in processed_rows:
         insert_game(e)
+
+
+
+def load_mlssoccer():
+    """
+    Load the mlssoccer scores.
+    """
+    connection = pymongo.Connection()
+    soccer_db = connection.soccer
+
+    # Make sure teams are working.
+    rows = get_rows(soccer_db.mlssoccer_mls_games)
+    load_rows(rows)
+
+def load_nasl():
+    """
+    Load the mlssoccer scores.
+    """
+    connection = pymongo.Connection()
+    soccer_db = connection.soccer
+
+    # Make sure teams are working.
+    rows = get_rows(soccer_db.mlssoccer_mls_games)
+    load_rows(rows)
+

@@ -3,7 +3,7 @@ from django.db.models.signals import post_save
 from django.db.transaction import commit_on_success
 from django.forms.models import model_to_dict
 
-from soccer.leagues.models import League
+from soccer.leagues.models import League, Competition
 from soccer.main.tools import no_player
 from soccer.players.models import Person
 from soccer.teams.models import Team
@@ -76,8 +76,51 @@ def career_stats_dict():
 # ......................
 # Use an abstract model?
 # ......................
+
+# This is a more generic version of SeasonStat or CareerStat
+# Presumably a stat doesn't need to be only one player but
+# it's hard to imagine without it.
+class CompetitionStat(models.Model):
+
+    # Identity
+    player = models.ForeignKey(Person)
+    competition = models.ForeignKey(Competition)
+
+    # Time
+    games_played = models.IntegerField()
+    games_started = models.IntegerField()
+    minutes = models.IntegerField()
+
+    # Scoring
+    goals = models.IntegerField()
+    assists = models.IntegerField()
+    shots = models.IntegerField()
+    shots_on_goal = models.IntegerField()
+
+    # Fouls
+    fouls_committed = models.IntegerField()
+    fouls_suffered = models.IntegerField()
+    yellow_cards = models.IntegerField()
+    red_cards = models.IntegerField()
+
+    # Miscellaneous
+    offsides = models.IntegerField()
+    penalty_goals = models.IntegerField()
+    penalty_attempts = models.IntegerField()
+
+    # Goalkeeping
+    shutouts = models.IntegerField()
+    goals_allowed = models.IntegerField()
+    shots_faced = models.IntegerField()
+    saves = models.IntegerField()
+    penalties_allowed = models.IntegerField()
+    penalties_faced = models.IntegerField()
+
         
 class CareerStat(models.Model):
+
+    # What does SeasonStat have that CareerStat doesn't?
+    # This should go away.
 
     # Identity
     name = models.CharField(max_length=250)
@@ -157,6 +200,7 @@ class SeasonStat(models.Model):
 
 
     # Season-specific
+    # These can maybe be removed.
     team = models.ForeignKey(Team)
     year = models.IntegerField()
     position = models.CharField(max_length=7, default="X")

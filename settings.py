@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'soccer.places',
     'soccer.players',
     'soccer.salaries',
+    'soccer.stadiums',
     'soccer.stats',
     'soccer.teams',
     'django.contrib.admin',

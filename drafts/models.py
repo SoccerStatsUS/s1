@@ -8,29 +8,31 @@ from soccer.teams.models import Team
 
 
 class Draft(models.Model):
-    """Represents a draft that took place.  
+    """
+    Represents a draft that took place.  
     Consists of a name, a year, and a list of picks
-    in sequential order."""
+    in sequential order.
+    """
 
-    name = models.CharField(max_length=50, unique=True, null=False)
+    name = models.CharField(max_length=255, unique=True, null=False)
+    draft_type = models.CharField(max_length=255)
     year = models.IntegerField()
 
     def __unicode__(self):
         return self.name
 
     def teams(self):
+        """
+        List all teams from the draft.
+        """
         t = [e[0] for e in self.pick_set.all().values_list("team")]
         return Team.objects.filter(id__in=set(t))
 
-    def score_draft(self):
-        if not self.name.contains("USMNT Draft"):
-            raise
-
-        next_draft = Draft.objects.get(name__icontains="USMNT", year=self.year + 1)
-        return 
-
 
     def average_age(self, start=1, end=None):
+        """
+        Get the average age of something.
+        """
         picks = self.pick_set.filter(number__gte=start)
         if end is not None:
             picks = picks.filter(number__lte=end)
@@ -52,6 +54,9 @@ class Draft(models.Model):
 
 
     def get_missing(self, other_draft):
+        """
+        Get some sort of missing thing.
+        """
         missing = {}
         this_picks = self.order_dict
         other_picks = other_draft.order_dict
@@ -64,6 +69,8 @@ class Draft(models.Model):
         return sorted(missing.items(), key=lambda e: e[1])
         
     def get_diff(self, other_draft):
+        """
+        """
         diff = {}
         other_picks = other_draft.order_dict
 
@@ -80,7 +87,12 @@ class Draft(models.Model):
         return sorted(diff.items(), key=lambda e: e[1][0])
 
     def score_draft(self, other_draft):
+        """
+        Comparing drafts by score, vaguely.
+        For USMNT draft.
+        """
 
+        # ?
         next_order = other_draft.order_dict
 
         order_ids = {}
@@ -90,7 +102,7 @@ class Draft(models.Model):
             
         max_pick = len(next_order) + 1
 
-        
+        # Sort picks by team.
         d = {}
         for team, picks in self.by_team():
             picks = [order_ids.get(p.player.id, max_pick) for p in picks]
@@ -98,8 +110,9 @@ class Draft(models.Model):
 
 
         scores = []
+        # Presumably because there are 11 drafters?
         for team, picks in d.items():
-            p = picks[:11]
+            p = picks[:11] # ?
             average = sum(p) / 11.0
             median = p[6]
             scores.append((team, average, median))
@@ -123,8 +136,13 @@ class Draft(models.Model):
         ordering = ("name", )
     
 
+# A perfect model?
+# Other methods useful?
 class Pick(models.Model):
-    """Represents a single pick in a Draft."""
+    """
+    Represents a single pick in a Draft.
+    """
+
     draft = models.ForeignKey(Draft)
     team = models.ForeignKey(Team)
     player = models.ForeignKey(Person, default=no_player)
