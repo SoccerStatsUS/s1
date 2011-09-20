@@ -10,6 +10,67 @@ NASL_MAPPING = {
 }
 
 
+MLSSOCCER_MAPPING = {
+    "Miami": 'Miami Fusion F.C.',
+    'Tampa Bay': 'Tampa Bay Mutiny',
+    'Richmond': 'Richmond Kickers',
+    'Puerto Rico': 'Puerto Rico Islanders',
+    'Municipal': 'Club Social y Deportivo Municipal',
+    'Harrisburg': 'Harrisburg City Islanders',
+    'Metapan': 'Asociación Deportiva Isidro Metapán',
+    'Arabe Unido': 'Club Deportivo Árabe Unido',
+    'Saprissa': 'Deportivo Saprissa S.A.D.',
+    'Joe Public FC': 'Joe Public Football Club',
+    'Santos Laguna': 'Club Santos Laguna',
+    'CD Guadalajara': 'Club Deportivo Guadalajara',
+    'Charleston': 'Charleston Battery',
+    'Portugal': 'Portugal national team',
+    'Brazil': 'Brazil national team',
+    'North Korea': 'North Korea national team',
+    'Portugal': 'Portugal national team',
+    'Slovakia': 'Slovakia national team',
+    'Mexico': 'Mexico national team',
+    'Uruguay': 'Uruguay national team',
+    'France': 'France national team',
+    'Nigeria': 'Nigeria national team',
+    'Spain': 'Spain national team',
+    'Denmark': 'Denmark national team',
+    'Japan': 'Japan national team',
+    'New Zealand': 'New Zealand national team',
+    'Slovakia': 'Slovakia national team',
+    'Italy': 'Italy national team',
+    'Paraguay': 'Paraguay national team',
+    'Cameroon': 'Cameroon national team',
+    'Netherlands': 'Netherlands national team',
+    'CD Motagua':  'Club Deportivo Motagua',
+    'Ghana': 'Ghana national team',
+    'Greece': 'Greece national team',
+    'Australia': 'Australia national team',
+    'Germany': 'Germany national team',
+    'Argentina': 'Argentina national team',
+    'South Korea': 'South Korea national team',
+    'USA': 'United States national team',
+    'Algeria': 'Algeria national team',
+    'Slovenia': 'Slovenia national team',
+    'Serbia': 'Serbia national team',
+    'Rochester': 'Rochester Rhinos',
+    'Marathon': 'Club Deportivo Marathón',
+    'Chile': 'Chile national team',
+    'Switzerland': 'Switzerland national team',
+    'Honduras': 'Honduras national team',
+    'Bolton': 'Bolton Wanderers Football Club',
+    'St. Louis': 'Athletic Club of St. Louis',
+    'South Africa': 'South Africa national team',
+    'England': 'England national team',
+    'Ivory Coast': 'Côte d\'Ivoire national team',
+    'Tottenham': 'Tottenham Hotspur F.C.',
+    'Portsmouth FC': 'Portsmouth Football Club',
+    'Man City': 'Manchester City Football Club',
+    
+
+}
+
+
 MLS_MAPPING = {
     "FC Dallas": "Football Club Dallas",
     "Dallas Burn": "Football Club Dallas",
@@ -188,6 +249,7 @@ CNNSI_ENGLAND_MAPPING = {
     }
 
 mapping.update(MLS_MAPPING)
+mapping.update(MLSSOCCER_MAPPING)
 mapping.update(NASL_MAPPING)
 
 mapping.update(CNNSI_ENGLAND_MAPPING)

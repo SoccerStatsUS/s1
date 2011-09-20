@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from soccer.lineups.models import Game
+from soccer.games.models import Game
 from soccer.teams.models import Team
 from soccer.stats.models import SeasonStat
 
@@ -28,9 +28,13 @@ def defunct(request):
                               context_instance=RequestContext(request)
                               )
 
-def schedule(request, id, year):
-    games = Game.objects.filter(Q(home_team=id) | Q(away_team=id),
-                                date__year=year)
+def team_schedule(request, slug):
+    """
+    Recent games played by this team.
+    """
+    games = Game.objects.filter(Q(home_team__slug=slug) | Q(away_team__slug=slug)
+                                ).order_by("-date")
+
     context = {
         'games': games,
         }
@@ -38,6 +42,21 @@ def schedule(request, id, year):
     return render_to_response('teams/schedule.html',
                               context,
                               context_instance=RequestContext(request))
+
+def team_schedule_year(request, slug, year):
+    """
+    Recent games played by this team.
+    """
+    games = Game.objects.filter(Q(home_team__slug=slug) | Q(away_team__slug=slug),
+                                date__year=year).order_by("-date")
+    context = {
+        'games': games,
+        }
+    
+    return render_to_response('teams/schedule.html',
+                              context,
+                              context_instance=RequestContext(request))
+
 
 def team_and_year(request, id, year):
     """Detailed information for a team for a given year.

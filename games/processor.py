@@ -21,15 +21,17 @@ def check_game(d):
 
     # This should probably be the only way that a game gets inserted.
     # Need a pre-save hook for games?
+    d['date']
     g = Game.objects.filter(date=d['date'], 
                             home_team=d['home_team'], 
                             away_team=d['away_team']
                             )
 
-    gx = g[0]
 
     # Game already exists. Need to check that things match
     if g:
+        gx = g[0]
+
         if gx.location != '' and d.get('location') != gx.location:
             raise ConsistencyException
 
@@ -76,12 +78,21 @@ def process_mls_game(d):
     away_team = Team.objects.get_team(d['away_team'])
     dt = datetime.datetime.strptime(d['date'].strip(), '%A, %B %d, %Y')
 
+    try:
+        home_score = int(d['home_score'])
+        away_score = int(d['away_score'])
+
+    # Some score is bad.
+    except ValueError:
+        print d
+        return {}
+
     return {
         'date': dt,
         'home_team': home_team,
-        'home_score': int(d['home_score']),
+        'home_score': home_score,
         'away_team': away_team,
-        'away_score': int(d['away_score']),
+        'away_score': away_score,
         'location': d['location'],
         'competition': d.get('competition', ''),
         'notes': d.get('notes', ''),
@@ -103,10 +114,9 @@ def load_mlssoccer():
     for e in rows:
         check_team_names(e)
 
-    return
-
     # Get the necessary objects and coerce them to correct types.
     processed_rows = [process_mls_game(e) for e in rows]
+    processed_rows = [e for e in processed_rows if e]
 
     # make sure there is no conflicting data.
     for e in processed_rows:

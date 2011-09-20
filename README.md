@@ -1,5 +1,9 @@
 
+
+
 #### Todo
+
+! Delete Salvadorean league. It's a duplicate!
 
 Create a team ranking system based on the scores!
 Soccermetrics!

@@ -18,6 +18,10 @@
 <tr>
   <td>Founded in</td><td>{{ team.founded }}</td>
 </tr>
+<tr>
+  <td>Schedule</td>
+  <td><a href="{% url team_schedule team.slug %}">{{ team.founded }}</a></td>
+</tr>
 </table>
 {% endwith %}
 
@@ -28,7 +32,7 @@
     <tr>
       <td>{{ year }}</td>
       <td><a href="{% url team_and_year team.id year %}">stats</a></td>
-      <td>schedule</td>
+      <td><a href="{% url team_schedule_year team.slug year %}">schedule</a></td>
     </tr>
     {% endfor %}
 

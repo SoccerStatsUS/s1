@@ -95,7 +95,7 @@ class Team(models.Model):
     # Let's just be clear that it's very optional.
     short_name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
-    city = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, blank=True)
     
     # League isn't really a property of a team...
     league = models.ForeignKey(League)

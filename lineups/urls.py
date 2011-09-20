@@ -9,9 +9,6 @@ urlpatterns = patterns('soccer.lineups.views',
                            'year_schedule',
                            name='year_schedule'),
 
-                       url(r'^game/(?P<game_id>\d+)/$',
-                           'game_detail',
-                           name='game_detail'),
 
 
 )
