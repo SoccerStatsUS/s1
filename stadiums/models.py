@@ -9,7 +9,7 @@ class Stadium(models.Model):
     location = models.CharField(max_length=255)
     # Would be nice to have a pointfield.
 
-    opened = models.DateField(null=True)
+    opened = models.IntegerField(null=True)
     capacity = models.IntegerField(null=True,blank=True)
 
     class Meta:
