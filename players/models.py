@@ -5,7 +5,7 @@ from django.db.transaction import commit_on_success
 
 from soccer.places.models import Country
 from soccer.players.aliases import mapping
-from soccer.utils.bios import load_bios
+#from soccer.utils.bios import load_bios
 #from soccer.utils import scrapers
 
 
@@ -15,12 +15,6 @@ class PersonManager(models.Manager):
         if name in mapping:
             name = mapping[name]
         return Person.objects.get(name=name)
-
-    def fix_birthdates(self):
-        no_birthdates = Person.objects.filter(birthdate=None)
-        bios = load_bios()
-        l = [p.get_birthdate(bios) for p in no_birthdates]
-        print len([e for e in l if e])
 
     def fix_birthplaces(self):
         no_birthplaces = Person.objects.filter(birthplace='')

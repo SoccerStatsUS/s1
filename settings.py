@@ -107,6 +107,7 @@ INSTALLED_APPS = (
     'soccer.stadiums',
     'soccer.stats',
     'soccer.teams',
+    'soccer.video',
     'django.contrib.admin',
     'south',
     'gunicorn',
