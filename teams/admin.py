@@ -1,4 +1,4 @@
-from soccer.teams.models import Team, Stadium
+from soccer.teams.models import Team
 from django.contrib import admin
 
 class TeamAdmin(admin.ModelAdmin):
@@ -6,12 +6,4 @@ class TeamAdmin(admin.ModelAdmin):
     search_fields = ("name", "city", )
     list_filter = ("defunct", "real", "league__confederation", "league")
 
-    #prepopulated_fields = {"slug": ("name",)}
-
-
-
-class StadiumAdmin(admin.ModelAdmin):
-    list_display = ("name", "opened", "location", "capacity")
-
 admin.site.register(Team, TeamAdmin)
-admin.site.register(Stadium, StadiumAdmin)
