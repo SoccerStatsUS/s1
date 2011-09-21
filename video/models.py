@@ -7,4 +7,4 @@ class Video(models.Model):
     
     url = models.CharField(max_length=1023)
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True)
