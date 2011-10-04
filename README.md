@@ -49,4 +49,10 @@ This would solve the long-lasting MLS open cup / regular season problem.
 # It could have some other information, like country, or format (round-robin, league)
 # A start and end. (could be figured programatically)
 
+# Interesting sites
+
+* http://comparetheleagues.com/football-europe-visualization/
+* http://www.footballoutsiders.com/
+* http://www.baseball-reference.com/
+
 
